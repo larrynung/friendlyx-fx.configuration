@@ -2,30 +2,34 @@ A lightweight, simple, flexible, extensible configuration library.
 
 Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuration.WebAppSample.
 
+## app.config
+    <appSettings>
+        <add key="DisplayName" value="some display name for the project"/>
+        <add key="Count" value="278"/>
+        </appSettings>
+
+## MyConfiguration.cs
     /// <summary>
-    /// A custom setting name configuration
+    /// My configuration with some simple properties
     /// </summary>
-    public class CustomSettingNameConfiguration : AppConfiguration
+    public class MyConfiguration : AppConfiguration
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomSettingNameConfiguration"/> class.
+        /// Gets or sets the display name.
         /// </summary>
-        public CustomSettingNameConfiguration()
-            : base(new [] { new AppConfigurationProvider(new CustomSettingNameResolver()) })
-        {
-        }
+        public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets the application version
+        /// Gets or sets the count.
         /// </summary>
-        public string AppVersion { get; private set; }
-
-        /// <summary>
-        /// Gets the complex details
-        /// </summary>
-        [JsonSetting]
-        public ConfigurationComplexDetails ComplexDetails { get; private set; }
+        public int Count { get; set; }
     }
 
-    CustomSettingNameConfiguration customSettingNameConfiguration = new CustomSettingNameConfiguration();
-    // Now you can use the fulfilled configuration instance!
+## Program.cs
+    static void Main(string[] args)
+    {
+        // Create an instance
+        MyConfiguration configuration = new MyConfiguration();    	// Now you can just read the properties
+        Console.WriteLine("Display Name: " + configuration.DisplayName);
+        Console.WriteLine("Count: " + configuration.Count);    	Console.ReadKey();
+    }
