@@ -29,7 +29,11 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
     static void Main(string[] args)
     {
         // Create an instance
-        MyConfiguration configuration = new MyConfiguration();    	// Now you can just read the properties
+        MyConfiguration configuration = new MyConfiguration();
+
+        // Now you can just read the properties
         Console.WriteLine("Display Name: " + configuration.DisplayName);
-        Console.WriteLine("Count: " + configuration.Count);    	Console.ReadKey();
+        Console.WriteLine("Count: " + configuration.Count);
+
+        Console.ReadKey();
     }
