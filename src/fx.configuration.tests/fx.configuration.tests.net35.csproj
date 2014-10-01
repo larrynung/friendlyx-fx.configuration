@@ -21,18 +21,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\Debug\net35\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net35\fx.configuration.tests.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\Release\net35\</OutputPath>
+    <DefineConstants>TRACE;NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\net35\fx.configuration.tests.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -63,58 +65,30 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <None Include="..\..\net45\fx.configuration.tests\app.config">
-      <Link>app.config</Link>
-    </None>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\fx.configuration\fx.configuration.csproj">
+    <ProjectReference Include="..\fx.configuration\fx.configuration.net35.csproj">
       <Project>{bec9cf24-9381-46b5-b141-89ea3cb1c1a4}</Project>
       <Name>fx.configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="..\..\net45\fx.configuration.tests\AppConfigurationFacts.cs">
-      <Link>AppConfigurationFacts.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\AppConfigurationShortMappingFacts.cs">
-      <Link>AppConfigurationShortMappingFacts.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\BaseConfigurationProviderFacts.cs">
-      <Link>BaseConfigurationProviderFacts.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\ComplexSettingValue.cs">
-      <Link>ComplexSettingValue.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\ConfigConstants.cs">
-      <Link>ConfigConstants.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\CurrentEnvironmentFacts.cs">
-      <Link>CurrentEnvironmentFacts.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\CustomCultureAppConfigurationProvider.cs">
-      <Link>CustomCultureAppConfigurationProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\CustomCultureDecimalDeserializer.cs">
-      <Link>CustomCultureDecimalDeserializer.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\CustomSettingNameResolver.cs">
-      <Link>CustomSettingNameResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\Environment\TestAppConfigurationProviderWithEnvironment.cs">
-      <Link>Environment\TestAppConfigurationProviderWithEnvironment.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\TestAppConfiguration.cs">
-      <Link>TestAppConfiguration.cs</Link>
-    </Compile>
-    <Compile Include="..\..\net45\fx.configuration.tests\TestAppConfigurationShortMapping.cs">
-      <Link>TestAppConfigurationShortMapping.cs</Link>
-    </Compile>
+    <Compile Include="AppConfigurationFacts.cs" />
+    <Compile Include="AppConfigurationShortMappingFacts.cs" />
+    <Compile Include="BaseConfigurationProviderFacts.cs" />
+    <Compile Include="ComplexSettingValue.cs" />
+    <Compile Include="ConfigConstants.cs" />
+    <Compile Include="CurrentEnvironmentFacts.cs" />
+    <Compile Include="CustomCultureAppConfigurationProvider.cs" />
+    <Compile Include="CustomCultureDecimalDeserializer.cs" />
+    <Compile Include="CustomSettingNameResolver.cs" />
+    <Compile Include="Environment\TestAppConfigurationProviderWithEnvironment.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAppConfiguration.cs" />
+    <Compile Include="TestAppConfigurationShortMapping.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
