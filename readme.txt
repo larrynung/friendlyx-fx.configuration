@@ -6,7 +6,7 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
     <appSettings>
         <add key="DisplayName" value="some display name for the project"/>
         <add key="Count" value="278"/>
-        </appSettings>
+    </appSettings>
 
 ## MyConfiguration.cs
     /// <summary>
