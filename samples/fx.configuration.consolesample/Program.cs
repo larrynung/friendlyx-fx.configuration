@@ -41,29 +41,34 @@ namespace FX.Configuration.ConsoleSample
             DumpConfiguration(configuration);
 
             // Manual configuration creation sample
-            Console.WriteLine("**************** Manual sample");
+            Console.WriteLine(Environment.NewLine + "**************** Manual sample");
             configuration = new MainAppConfiguration();
             DumpConfiguration(configuration);
 
             // Using Autofac sample with short properties mapping
-            Console.WriteLine("**************** Autofac sample (short mapping)");
+            Console.WriteLine(Environment.NewLine + "**************** Autofac sample (short mapping)");
             MainAppConfigurationShortMapping configurationShortMapping = container.Resolve<MainAppConfigurationShortMapping>();
             DumpConfiguration(configurationShortMapping);
 
             // Manual configuration creation sample with short properties mapping
-            Console.WriteLine("**************** Manual sample (short mapping)");
+            Console.WriteLine(Environment.NewLine + "**************** Manual sample (short mapping)");
             configurationShortMapping = new MainAppConfigurationShortMapping();
             DumpConfiguration(configurationShortMapping);
 
             // Using Autofac sample with custom properties mapping
-            Console.WriteLine("**************** Autofac sample (custom mapping)");
+            Console.WriteLine(Environment.NewLine + "**************** Autofac sample (custom mapping)");
             CustomSettingNameConfiguration customSettingNameConfiguration = container.Resolve<CustomSettingNameConfiguration>();
             DumpConfiguration(customSettingNameConfiguration);
 
             // Manual configuration creation sample with custom properties mapping
-            Console.WriteLine("**************** Manual sample (custom mapping)");
+            Console.WriteLine(Environment.NewLine + "**************** Manual sample (custom mapping)");
             customSettingNameConfiguration = new CustomSettingNameConfiguration();
             DumpConfiguration(customSettingNameConfiguration);
+
+            // Lazy initialization to prefent loading the settings in the constructor
+            Console.WriteLine(Environment.NewLine + "**************** Lazy initialization");
+            Lazy<MainAppConfiguration> lazyConfiguration = new Lazy<MainAppConfiguration>();
+            DumpConfiguration(lazyConfiguration.Value);
 
             Console.ReadKey();
         }
