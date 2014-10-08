@@ -24,7 +24,7 @@ namespace FX.Configuration.WebAppSample
     /// <summary>
     /// A common web app configuration
     /// </summary>
-    public class CommonConfiguration : AppConfigurationShortMapping
+    public class CommonConfiguration : AppConfiguration
     {
         /// <summary>
         /// Gets the name of the certificate
