@@ -57,7 +57,7 @@
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="AppConfigurationProvider.cs" />
     <Compile Include="AppConfigurationProviderLongPropertyName.cs" />
-    <Compile Include="AppConfigurationShortMapping.cs" />
+    <Compile Include="AppConfigurationLongPropertyName.cs" />
     <Compile Include="Attributes\EnumerableSettingAttribute.cs" />
     <Compile Include="BaseConfigurationProviderLongPropertyName.cs" />
     <Compile Include="Attributes\JsonSettingAttribute.cs" />

@@ -26,7 +26,7 @@ using System.Configuration;
 namespace FX.Configuration
 {
     /// <summary>
-    /// A configuration provider reading settings from an app configuration file resolving setting keys based on short property names
+    /// A configuration provider reading settings from an app configuration file resolving setting keys based on long property names
     /// </summary>
     public class AppConfigurationProviderLongPropertyName : BaseConfigurationProviderLongPropertyName
     {

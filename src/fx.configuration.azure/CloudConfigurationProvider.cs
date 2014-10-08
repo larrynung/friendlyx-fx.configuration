@@ -24,6 +24,9 @@ using Microsoft.WindowsAzure;
 
 namespace FX.Configuration.Azure
 {
+    /// <summary>
+    /// A cloud configuration provider
+    /// </summary>
     public class CloudConfigurationProvider : BaseConfigurationProvider
     {
         /// <summary>

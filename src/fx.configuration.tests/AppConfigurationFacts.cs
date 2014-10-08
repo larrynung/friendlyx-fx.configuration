@@ -51,7 +51,7 @@ namespace FX.Configuration.Tests
 
             // Verify struct properties
             configuration.TimeSpanProperty.ShouldBe(TimeSpan.Parse("19:18:09.19288"));
-            configuration.GuidProperty.ShouldBe(new Guid("63A0848A-586B-4108-867B-2980B0443401"));
+            configuration.GuidProperty.ShouldBe(new Guid("691BBBD5-DAC8-4991-8D58-A271D2388954"));
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace FX.Configuration.Tests
 
             // Verify struct properties
             configuration.TimeSpanProperty.ShouldBe(TimeSpan.Parse("19:18:09.19288"));
-            configuration.GuidProperty.ShouldBe(new Guid("63A0848A-586B-4108-867B-2980B0443401"));
+            configuration.GuidProperty.ShouldBe(new Guid("691BBBD5-DAC8-4991-8D58-A271D2388954"));
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace FX.Configuration.Tests
 
             // Verify struct properties
             configuration.TimeSpanProperty.ShouldBe(TimeSpan.Parse("19:18:09.19288"));
-            configuration.GuidProperty.ShouldBe(new Guid("63A0848A-586B-4108-867B-2980B0443401"));
+            configuration.GuidProperty.ShouldBe(new Guid("691BBBD5-DAC8-4991-8D58-A271D2388954"));
 
             // Verify a first level complex property
             configuration.SomeComplexProperty.ShouldNotBeNull();

@@ -19,6 +19,7 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using System.Collections.Generic;
 using FX.Configuration.Attributes;
 
 namespace FX.Configuration.ConsoleSample
@@ -38,5 +39,11 @@ namespace FX.Configuration.ConsoleSample
         /// </summary>
         [JsonSetting]
         public ConfigurationComplexDetails ComplexDetails { get; private set; }
+
+        /// <summary>
+        /// Gets the integer values
+        /// </summary>
+        [EnumerableSetting("#", typeof(int))]
+        public List<int> IntegerValues { get; private set; }
     }
 }

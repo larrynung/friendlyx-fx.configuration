@@ -20,6 +20,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using FX.Configuration.Attributes;
 using FX.Configuration.Deserializers;
 
@@ -28,7 +29,7 @@ namespace FX.Configuration.Tests
     /// <summary>
     /// A configuration with short mapping used in unit tests
     /// </summary>
-    public class TestAppConfigurationShortMapping : AppConfigurationShortMapping
+    public class TestAppConfigurationLongPropertyName : AppConfigurationLongPropertyName
     {
         /// <summary>
         /// Gets the test property value
@@ -55,7 +56,16 @@ namespace FX.Configuration.Tests
         /// </summary>
         public decimal DecimalProperty { get; private set; }
 
+        /// <summary>
+        /// Gets some complex property
+        /// </summary>
         [Deserializer(typeof(JsonDeserializer))]
         public ComplexSettingValue SomeComplexProperty { get; private set; }
+
+        /// <summary>
+        /// Gets the list of strings
+        /// </summary>
+        [EnumerableSetting]
+        public List<string> StringList { get; private set; }
     }
 }

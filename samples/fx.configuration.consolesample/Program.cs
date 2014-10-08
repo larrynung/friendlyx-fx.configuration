@@ -32,37 +32,37 @@ namespace FX.Configuration.ConsoleSample
     {
         static void Main(string[] args)
         {
+            // Manual configuration creation sample
+            Console.WriteLine(Environment.NewLine + "**************** Manual sample");
+            MainAppConfiguration configuration = new MainAppConfiguration();
+            DumpConfiguration(configuration);
+
             // Using Autofac sample
             Console.WriteLine("**************** Autofac sample");
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterModule<ConsoleAppAutofacModule>();
             IContainer container = builder.Build();
-            MainAppConfiguration configuration = container.Resolve<MainAppConfiguration>();
+            configuration = container.Resolve<MainAppConfiguration>();
             DumpConfiguration(configuration);
-
-            // Manual configuration creation sample
-            Console.WriteLine(Environment.NewLine + "**************** Manual sample");
-            configuration = new MainAppConfiguration();
-            DumpConfiguration(configuration);
-
-            // Using Autofac sample with short properties mapping
-            Console.WriteLine(Environment.NewLine + "**************** Autofac sample (short mapping)");
-            MainAppConfigurationShortMapping configurationShortMapping = container.Resolve<MainAppConfigurationShortMapping>();
-            DumpConfiguration(configurationShortMapping);
 
             // Manual configuration creation sample with short properties mapping
-            Console.WriteLine(Environment.NewLine + "**************** Manual sample (short mapping)");
-            configurationShortMapping = new MainAppConfigurationShortMapping();
-            DumpConfiguration(configurationShortMapping);
+            Console.WriteLine(Environment.NewLine + "**************** Manual sample (long name mapping)");
+            MainAppConfigurationLongPropertyName configurationLongPropertyName = new MainAppConfigurationLongPropertyName();
+            DumpConfiguration(configurationLongPropertyName);
 
-            // Using Autofac sample with custom properties mapping
-            Console.WriteLine(Environment.NewLine + "**************** Autofac sample (custom mapping)");
-            CustomSettingNameConfiguration customSettingNameConfiguration = container.Resolve<CustomSettingNameConfiguration>();
-            DumpConfiguration(customSettingNameConfiguration);
+            // Using Autofac sample with short properties mapping
+            Console.WriteLine(Environment.NewLine + "**************** Autofac sample (long name mapping)");
+            configurationLongPropertyName = container.Resolve<MainAppConfigurationLongPropertyName>();
+            DumpConfiguration(configurationLongPropertyName);
 
             // Manual configuration creation sample with custom properties mapping
             Console.WriteLine(Environment.NewLine + "**************** Manual sample (custom mapping)");
-            customSettingNameConfiguration = new CustomSettingNameConfiguration();
+            CustomSettingNameConfiguration customSettingNameConfiguration = new CustomSettingNameConfiguration();
+            DumpConfiguration(customSettingNameConfiguration);
+
+            // Using Autofac sample with custom properties mapping
+            Console.WriteLine(Environment.NewLine + "**************** Autofac sample (custom mapping)");
+            customSettingNameConfiguration = container.Resolve<CustomSettingNameConfiguration>();
             DumpConfiguration(customSettingNameConfiguration);
 
             // Lazy initialization to prefent loading the settings in the constructor
@@ -73,7 +73,7 @@ namespace FX.Configuration.ConsoleSample
             Console.ReadKey();
         }
 
-        private static void DumpConfiguration(MainAppConfigurationShortMapping configuration)
+        private static void DumpConfiguration(MainAppConfigurationLongPropertyName configuration)
         {
             Console.WriteLine("AppVersion: " + configuration.AppVersion);
             Console.WriteLine("ComplexDetails.DisplayName: " + configuration.ComplexDetails.DisplayName);
@@ -84,6 +84,8 @@ namespace FX.Configuration.ConsoleSample
 
             string json = JsonConvert.SerializeObject(configuration.ComplexDetails);
             Console.WriteLine("ComplexDetails JSON: " + json);
+
+            Console.WriteLine("Enumerable STRING setting: " + string.Join(";", configuration.StringValues));
         }
 
         private static void DumpConfiguration(MainAppConfiguration configuration)
@@ -97,6 +99,8 @@ namespace FX.Configuration.ConsoleSample
 
             string json = JsonConvert.SerializeObject(configuration.ComplexDetails);
             Console.WriteLine("ComplexDetails JSON: " + json);
+
+            Console.WriteLine("Enumerable INT setting: " + string.Join("#", configuration.IntegerValues));
         }
 
         private static void DumpConfiguration(CustomSettingNameConfiguration configuration)

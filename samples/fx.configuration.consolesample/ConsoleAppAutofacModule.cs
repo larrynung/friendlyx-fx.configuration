@@ -41,7 +41,7 @@ namespace FX.Configuration.ConsoleSample
         {
             builder.RegisterType<DefaultDeserializer>().As<object>();
             builder.RegisterType<MainAppConfiguration>();
-            builder.RegisterType<MainAppConfigurationShortMapping>();
+            builder.RegisterType<MainAppConfigurationLongPropertyName>();
             builder.RegisterType<CustomSettingNameConfiguration>();
 
             base.Load(builder);

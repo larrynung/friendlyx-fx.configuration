@@ -19,32 +19,31 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
 using System.Collections.Generic;
+using FX.Configuration.Attributes;
 
-namespace FX.Configuration
+namespace FX.Configuration.ConsoleSample
 {
     /// <summary>
-    /// The default configuration reading settings from app.config resolving setting keys based on short property names
+    /// Main application configuration with short property names mapping
     /// </summary>
-    public abstract class AppConfigurationShortMapping : BaseConfiguration
+    public class MainAppConfigurationLongPropertyName : AppConfigurationLongPropertyName
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppConfiguration" /> class.
+        /// Gets the application version
         /// </summary>
-        protected AppConfigurationShortMapping()
-            : this(new[] { new AppConfigurationProviderLongPropertyName() })
-        {
-        }
+        public string AppVersion { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppConfiguration" /> class.
+        /// Gets the complex details
         /// </summary>
-        /// <param name="configurationProviders">The configuration providers.</param>
-        protected AppConfigurationShortMapping(IEnumerable<IConfigurationProvider> configurationProviders)
-            : base(configurationProviders)
-        {
-            base.Fill();
-        }
+        [JsonSetting]
+        public ConfigurationComplexDetails ComplexDetails { get; private set; }
+
+        /// <summary>
+        /// Gets the string values
+        /// </summary>
+        [EnumerableSetting]
+        public List<string> StringValues { get; private set; }
     }
 }

@@ -34,6 +34,7 @@ namespace FX.Configuration
         /// Initializes a new instance of the <see cref="BaseConfigurationProviderLongPropertyName"/> class.
         /// </summary>
         protected BaseConfigurationProviderLongPropertyName()
+            : base(new LongPropertyNameSettingNameResolver())
         {
         }
 

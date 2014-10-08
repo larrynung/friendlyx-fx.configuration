@@ -53,9 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfiguration.cs" />
+    <Compile Include="AppConfigurationLongPropertyName.cs" />
     <Compile Include="AppConfigurationProvider.cs" />
     <Compile Include="AppConfigurationProviderLongPropertyName.cs" />
-    <Compile Include="AppConfigurationShortMapping.cs" />
     <Compile Include="Attributes\ConfigurationEnvironmentAttribute.cs" />
     <Compile Include="Attributes\CustomCultureAttribute.cs" />
     <Compile Include="Attributes\DeserializerAttribute.cs" />

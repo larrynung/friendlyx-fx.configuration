@@ -28,7 +28,7 @@ namespace FX.Configuration.Tests
     /// <summary>
     /// App configuration with short mapping unit tests
     /// </summary>
-    public class AppConfigurationShortMappingFacts
+    public class AppConfigurationLongPropertyNameFacts
     {
         /// <summary>
         /// Application configuration provider fills configuration correctly
@@ -37,21 +37,14 @@ namespace FX.Configuration.Tests
         public void AppConfigProviderFillsConfigCorrectly()
         {
             // Arrange
-            TestAppConfigurationShortMapping configuration = new TestAppConfigurationShortMapping();
+            TestAppConfigurationLongPropertyName configuration = new TestAppConfigurationLongPropertyName();
             AppConfigurationProviderLongPropertyName configurationProvider = new AppConfigurationProviderLongPropertyName();
 
             // Act
             configurationProvider.Fill(configuration);
 
             // Assert
-            // Verify simple properties
-            configuration.StringProperty.ShouldBe("test-value");
-            configuration.BoolProperty.ShouldBe(true);
-            configuration.DecimalProperty.ShouldBe((decimal)16.6271);
-
-            // Verify struct properties
-            configuration.TimeSpanProperty.ShouldBe(TimeSpan.Parse("19:18:09.19288"));
-            configuration.GuidProperty.ShouldBe(new Guid("63A0848A-586B-4108-867B-2980B0443401"));
+            VerifyConfiguration(configuration);
         }
 
         /// <summary>
@@ -61,21 +54,26 @@ namespace FX.Configuration.Tests
         public void SimpleAppConfigurationFillsCorrectly()
         {
             // Arrange
-            TestAppConfigurationShortMapping configuration = new TestAppConfigurationShortMapping();
+            TestAppConfigurationLongPropertyName configuration = new TestAppConfigurationLongPropertyName();
 
             // Assert
+            VerifyConfiguration(configuration);
+        }
+
+        private static void VerifyConfiguration(TestAppConfigurationLongPropertyName configuration)
+        {
             // Verify simple properties
-            configuration.StringProperty.ShouldBe("test-value");
+            configuration.StringProperty.ShouldBe("test-value-long");
             configuration.BoolProperty.ShouldBe(true);
-            configuration.DecimalProperty.ShouldBe((decimal)16.6271);
+            configuration.DecimalProperty.ShouldBe((decimal)12.32);
 
             // Verify struct properties
-            configuration.TimeSpanProperty.ShouldBe(TimeSpan.Parse("19:18:09.19288"));
+            configuration.TimeSpanProperty.ShouldBe(TimeSpan.Parse("11:17:07.2787"));
             configuration.GuidProperty.ShouldBe(new Guid("63A0848A-586B-4108-867B-2980B0443401"));
 
             // Verify a first level complex property
             configuration.SomeComplexProperty.ShouldNotBeNull();
-            configuration.SomeComplexProperty.Name.ShouldBe("short-complex-name");
+            configuration.SomeComplexProperty.Name.ShouldBe("long-complex-name");
             configuration.SomeComplexProperty.Id.ShouldBe(new Guid("296DE560-59E7-4EA1-A838-4700B1DACE50"));
             configuration.SomeComplexProperty.Price.ShouldBe((decimal)128.290);
 
@@ -89,6 +87,14 @@ namespace FX.Configuration.Tests
             configuration.SomeComplexProperty.ComplexProperty.Value.Expiration.ShouldBe(TimeSpan.Parse("11:37:20.298"));
             configuration.SomeComplexProperty.ComplexProperty.Value.Amount.ShouldBe(21.23678);
             configuration.SomeComplexProperty.ComplexProperty.Value.Value.ShouldBeNull();
+
+            // Verify enumerable properties
+            configuration.StringList.ShouldNotBeNull();
+            configuration.StringList.Count.ShouldBe(4);
+            configuration.StringList[0].ShouldBe("item2-1");
+            configuration.StringList[1].ShouldBe("item2-278");
+            configuration.StringList[2].ShouldBe("item-267");
+            configuration.StringList[3].ShouldBe("list2789");
         }
     }
 }
