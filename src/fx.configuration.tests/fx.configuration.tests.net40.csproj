@@ -74,9 +74,11 @@
     <Compile Include="CustomCultureAppConfigurationProvider.cs" />
     <Compile Include="CustomCultureDecimalDeserializer.cs" />
     <Compile Include="CustomSettingNameResolver.cs" />
+    <Compile Include="EnumerableSettingAttributeFacts.cs" />
     <Compile Include="Environment\TestAppConfigurationProviderWithEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAppConfiguration.cs" />
+    <Compile Include="TestAppConfigurationEnumerableSetting.cs" />
     <Compile Include="TestAppConfigurationShortMapping.cs" />
   </ItemGroup>
   <ItemGroup>

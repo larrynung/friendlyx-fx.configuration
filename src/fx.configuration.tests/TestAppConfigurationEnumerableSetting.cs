@@ -20,22 +20,26 @@
 */
 
 using System;
-using System.Globalization;
+using System.Collections.Generic;
+using FX.Configuration.Attributes;
 
-namespace FX.Configuration.Deserializers
+namespace FX.Configuration.Tests
 {
     /// <summary>
-    /// Deserializes a raw setting to a typed value
+    /// A configuration with enumerable setting used in unit tests
     /// </summary>
-    public interface ISettingDeserializer<T>
+    internal class TestAppConfigurationEnumerableSetting : AppConfiguration
     {
         /// <summary>
-        /// Deserializes the specified input value to a typed value
+        /// Gets a list of strings
         /// </summary>
-        /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
-        /// <param name="cultureInfo">The culture information</param>
-        /// <param name="result">The result value</param>
-        void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out T result);
+        [EnumerableSetting]
+        public List<string> StringList { get; private set; }
+
+        /// <summary>
+        /// Gets a list of Guids
+        /// </summary>
+        [EnumerableSetting(typeof(Guid))]
+        public List<Guid> GuidList { get; private set; }
     }
 }

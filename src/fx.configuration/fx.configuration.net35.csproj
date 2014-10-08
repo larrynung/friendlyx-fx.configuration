@@ -59,6 +59,7 @@
     <Compile Include="Attributes\ConfigurationEnvironmentAttribute.cs" />
     <Compile Include="Attributes\CustomCultureAttribute.cs" />
     <Compile Include="Attributes\DeserializerAttribute.cs" />
+    <Compile Include="Attributes\EnumerableSettingAttribute.cs" />
     <Compile Include="Attributes\JsonSettingAttribute.cs" />
     <Compile Include="BaseConfiguration.cs" />
     <Compile Include="BaseConfigurationProvider.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="CompatibilityExtensions.net35.cs" />
     <Compile Include="CurrentConfigurationEnvironment.cs" />
     <Compile Include="Deserializers\DefaultDeserializer.cs" />
+    <Compile Include="Deserializers\EnumerableSettingDeserializer.cs" />
     <Compile Include="Deserializers\ISettingDeserializer.cs" />
     <Compile Include="Deserializers\JsonDeserializer.cs" />
     <Compile Include="Extensions.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="RootCompatibilityExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="fx.key.pfx" />
     <None Include="fx.public.snk" />
     <None Include="packages.config" />
   </ItemGroup>

@@ -24,6 +24,9 @@ using System.Globalization;
 
 namespace FX.Configuration.Deserializers
 {
+    /// <summary>
+    /// The default deserializer
+    /// </summary>
     public class DefaultDeserializer :
         ISettingDeserializer<string>,
         ISettingDeserializer<bool>,
@@ -41,7 +44,8 @@ namespace FX.Configuration.Deserializers
         ISettingDeserializer<decimal>,
         ISettingDeserializer<DateTime>,
         ISettingDeserializer<TimeSpan>,
-        ISettingDeserializer<Guid>
+        ISettingDeserializer<Guid>,
+        ISettingDeserializer<Uri>
     {
 
         /// <summary>
@@ -257,6 +261,18 @@ namespace FX.Configuration.Deserializers
         public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out Guid result)
         {
             result = new Guid((string)input);
+        }
+
+        /// <summary>
+        /// Deserializes the specified input value to a typed value
+        /// </summary>
+        /// <param name="input">The input value</param>
+        /// <param name="outputType">Type of the output</param>
+        /// <param name="cultureInfo">The culture information</param>
+        /// <param name="result">The result value</param>
+        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out Uri result)
+        {
+            result = new Uri((string)input);
         }
     }
 }

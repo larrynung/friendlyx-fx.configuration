@@ -60,12 +60,12 @@ namespace FX.Configuration
             if (string.IsNullOrEmpty(CurrentConfigurationEnvironment.Name))
             {
                 // If current environment name is not set then we find providers with no EnvironmentAttribute or EnvironmentAttribute.Name is empty
-                providers = this.ConfigurationProviders.Where(provider => !provider.GetConfigurationEnvironemntAttributes().Any() || provider.GetConfigurationEnvironemntAttributes().Any(attribute => string.IsNullOrEmpty(attribute.Name)));
+                providers = this.ConfigurationProviders.Where(provider => !provider.GetConfigurationEnvironmentAttributes().Any() || provider.GetConfigurationEnvironmentAttributes().Any(attribute => string.IsNullOrEmpty(attribute.Name)));
             }
             else
             {
                 // Otherwise we find a match
-                providers = this.ConfigurationProviders.Where(provider => provider.GetConfigurationEnvironemntAttributes().Any(attribute => attribute.Name == CurrentConfigurationEnvironment.Name));
+                providers = this.ConfigurationProviders.Where(provider => provider.GetConfigurationEnvironmentAttributes().Any(attribute => attribute.Name == CurrentConfigurationEnvironment.Name));
             }
 
             foreach (IConfigurationProvider configurationProvider in providers)

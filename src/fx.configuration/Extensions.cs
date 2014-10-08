@@ -22,8 +22,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using FX.Configuration.Attributes;
+using FX.Configuration.Deserializers;
 
 namespace FX.Configuration
 {
@@ -33,11 +35,11 @@ namespace FX.Configuration
     internal static class Extensions
     {
         /// <summary>
-        /// Gets the configuration environemnt attributes.
+        /// Gets the configuration environment attributes.
         /// </summary>
         /// <param name="configurationProvider">The configuration provider.</param>
         /// <returns>A list of ConfigurationEnvironmentAttribute</returns>
-        public static IEnumerable<ConfigurationEnvironmentAttribute> GetConfigurationEnvironemntAttributes(this IConfigurationProvider configurationProvider)
+        public static IEnumerable<ConfigurationEnvironmentAttribute> GetConfigurationEnvironmentAttributes(this IConfigurationProvider configurationProvider)
         {
             return configurationProvider.GetType().GetCustomAttributes<ConfigurationEnvironmentAttribute>();
         }
@@ -50,7 +52,17 @@ namespace FX.Configuration
         public static object GetDeserializerFromAttribute(this PropertyInfo property)
         {
             DeserializerAttribute attribute = property.GetCustomAttribute<DeserializerAttribute>();
-            return attribute == null ? null : Activator.CreateInstance(attribute.DeserializerType);
+            object deserializer;
+            if (attribute != null)
+            {
+                deserializer = attribute.CreateSettingDeserializer() ?? Activator.CreateInstance(attribute.DeserializerType);
+            }
+            else
+            {
+                deserializer = null;
+            }
+
+            return deserializer;
         }
 
         /// <summary>
@@ -62,6 +74,37 @@ namespace FX.Configuration
         {
             CustomCultureAttribute attribute = property.GetCustomAttribute<CustomCultureAttribute>();
             return attribute == null ? null : new CultureInfo(attribute.CultureCode);
+        }
+
+        /// <summary>
+        /// Gets the type of the interface
+        /// </summary>
+        /// <param name="deserializer">The deserializer</param>
+        /// <param name="propertyType">A type of the property</param>
+        /// <returns></returns>
+        public static Type GetInterfaceType(this object deserializer, Type propertyType)
+        {
+            Type interfaceType = typeof(ISettingDeserializer<>).MakeGenericType(propertyType);
+            Type[] implementedInterfaces = deserializer.GetType().GetInterfaces();
+            Type foundInterface = implementedInterfaces.FirstOrDefault(type => type == interfaceType);
+            return foundInterface;
+        }
+
+        /// <summary>
+        /// Gets the value from interface
+        /// </summary>
+        /// <param name="deserializer">The deserializer</param>
+        /// <param name="rawSetting">The raw setting</param>
+        /// <param name="propertyType">Type of the property</param>
+        /// <param name="customCultureInfo">The custom culture information</param>
+        /// <param name="interfaceType">Type of the interface</param>
+        /// <returns></returns>
+        public static object GetValueFromInterface(this object deserializer, object rawSetting, Type propertyType, CultureInfo customCultureInfo, Type interfaceType)
+        {
+            object[] parameters = { rawSetting, propertyType, customCultureInfo, null };
+            interfaceType.GetMethod("Deserialize").Invoke(deserializer, parameters);
+            object value = parameters[parameters.Length - 1];
+            return value;
         }
     }
 }

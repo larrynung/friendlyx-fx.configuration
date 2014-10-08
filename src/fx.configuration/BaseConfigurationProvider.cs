@@ -102,6 +102,9 @@ namespace FX.Configuration
             private set;
         }
 
+        /// <summary>
+        /// Gets or sets the setting name resolver
+        /// </summary>
         public ISettingNameResolver SettingNameResolver { get; set; }
 
         /// <summary>
@@ -168,11 +171,11 @@ namespace FX.Configuration
         {
             CultureInfo customCultureInfo = property.GetCustomCultureInfo();
 
-            Type foundInterface = this.GetInterfaceType(deserializer, property.PropertyType);
+            Type foundInterface = deserializer.GetInterfaceType(property.PropertyType);
             if (foundInterface == null && !property.PropertyType.IsValueType)
             {
                 // We couldn't find a specific interface so for ref type will try to find an interface supports 'object'
-                foundInterface = this.GetInterfaceType(deserializer, typeof(object));
+                foundInterface = deserializer.GetInterfaceType(typeof(object));
             }
 
             if (foundInterface == null)
@@ -180,7 +183,7 @@ namespace FX.Configuration
                 throw new InvalidOperationException(string.Format("Invalid deserializer type specified in property: {0}.", property.Name));
             }
 
-            object value = this.GetValueFromInterface(deserializer, rawSetting, property.PropertyType, customCultureInfo, foundInterface);
+            object value = deserializer.GetValueFromInterface(rawSetting, property.PropertyType, customCultureInfo, foundInterface);
             return value;
         }
 
@@ -197,14 +200,14 @@ namespace FX.Configuration
 
             foreach (object deserializer in deserializers)
             {
-                Type foundInterface = this.GetInterfaceType(deserializer, property.PropertyType);
+                Type foundInterface = deserializer.GetInterfaceType(property.PropertyType);
 
                 if (foundInterface == null)
                 {
                     continue;
                 }
 
-                object value = this.GetValueFromInterface(deserializer, rawSetting, property.PropertyType, customCultureInfo, foundInterface);
+                object value = deserializer.GetValueFromInterface(rawSetting, property.PropertyType, customCultureInfo, foundInterface);
                 return value;
             }
 
@@ -214,21 +217,6 @@ namespace FX.Configuration
             }
 
             return null;
-        }
-
-        private Type GetInterfaceType(object deserializer, Type propertyType)
-        {
-            Type interfaceType = typeof(ISettingDeserializer<>).MakeGenericType(propertyType);
-            Type foundInterface = deserializer.GetType().GetInterfaces().FirstOrDefault(type => type == interfaceType);
-            return foundInterface;
-        }
-
-        private object GetValueFromInterface(object deserializer, object rawSetting, Type propertyType, CultureInfo customCultureInfo, Type interfaceType)
-        {
-            object[] parameters = { rawSetting, propertyType, customCultureInfo, null };
-            interfaceType.GetMethod("Deserialize").Invoke(deserializer, parameters);
-            object value = parameters[parameters.Length - 1];
-            return value;
         }
     }
 }

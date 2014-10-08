@@ -58,10 +58,12 @@
     <Compile Include="AppConfigurationProvider.cs" />
     <Compile Include="AppConfigurationProviderLongPropertyName.cs" />
     <Compile Include="AppConfigurationShortMapping.cs" />
+    <Compile Include="Attributes\EnumerableSettingAttribute.cs" />
     <Compile Include="BaseConfigurationProviderLongPropertyName.cs" />
     <Compile Include="Attributes\JsonSettingAttribute.cs" />
     <Compile Include="BaseConfiguration.cs" />
     <Compile Include="BaseConfigurationProvider.cs" />
+    <Compile Include="Deserializers\EnumerableSettingDeserializer.cs" />
     <Compile Include="RootCompatibilityExtensions.cs" />
     <Compile Include="CurrentConfigurationEnvironment.cs" />
     <Compile Include="Attributes\CustomCultureAttribute.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Resolvers\ShortPropertyNameSettingNameResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="fx.key.pfx" />
     <None Include="fx.public.snk" />
     <None Include="packages.config" />
   </ItemGroup>

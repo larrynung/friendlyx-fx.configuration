@@ -37,9 +37,19 @@ namespace FX.Configuration.Attributes
         {
             this.DeserializerType = deserializerType;
         }
+
         /// <summary>
         /// Gets the type of the deserializer
         /// </summary>
         public Type DeserializerType { get; private set; }
+
+        /// <summary>
+        /// Creates the setting deserializer
+        /// </summary>
+        /// <returns>A deserializer</returns>
+        public virtual object CreateSettingDeserializer()
+        {
+            return Activator.CreateInstance(this.DeserializerType);
+        }
     }
 }
