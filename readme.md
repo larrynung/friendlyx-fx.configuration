@@ -1,4 +1,4 @@
-A lightweight, simple, flexible, extensible configuration library.
+A lightweight, simple, flexible, extensible library to read configurations using strongly typed classes.
 
 Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuration.WebAppSample.
 
