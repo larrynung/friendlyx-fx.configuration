@@ -32,7 +32,6 @@ namespace FX.Configuration.Tests
         /// <summary>
         /// Gets the name of the setting
         /// </summary>
-        /// <typeparam name="T">The type of the configuration</typeparam>
         /// <param name="property">The property</param>
         /// <returns>The setting name</returns>
         public string GetSettingName(PropertyInfo property)

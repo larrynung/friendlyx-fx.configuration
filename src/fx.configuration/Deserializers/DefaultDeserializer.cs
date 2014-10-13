@@ -99,9 +99,9 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
+        /// <param name="outputType">Type of the output</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        /// <returns>The deserialized value</returns>
         public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out sbyte result)
         {
             result = Convert.ToSByte(input, cultureInfo);
