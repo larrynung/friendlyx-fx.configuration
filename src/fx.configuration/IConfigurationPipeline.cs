@@ -19,24 +19,18 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
-using System.Globalization;
-using System.Reflection;
-
-namespace FX.Configuration.Deserializers
+namespace FX.Configuration
 {
     /// <summary>
-    /// Deserializes a raw setting to a typed value
+    /// A configuration pipeline interface
     /// </summary>
-    public interface ISettingDeserializer<T>
+    public interface IConfigurationPipeline
     {
         /// <summary>
-        /// Deserializes the specified input value to a typed value
+        /// Runs a configuration pipeline to fill out the specified configuration
         /// </summary>
-        /// <param name="input">The input value</param>
-        /// <param name="property">The property</param>
-        /// <param name="cultureInfo">The culture information</param>
-        /// <param name="result">The result value</param>
-        void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out T result);
+        /// <typeparam name="T">The type of configuration</typeparam>
+        /// <param name="config">The configuration to fill out</param>
+        void Run<T>(T config) where T : BaseConfiguration;
     }
 }

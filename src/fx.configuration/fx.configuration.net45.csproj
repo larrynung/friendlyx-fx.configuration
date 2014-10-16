@@ -56,7 +56,9 @@
     <Compile Include="Attributes\JsonSettingAttribute.cs" />
     <Compile Include="BaseConfiguration.cs" />
     <Compile Include="BaseConfigurationProvider.cs" />
+    <Compile Include="ConfigurationPipeline.cs" />
     <Compile Include="Deserializers\EnumerableSettingDeserializer.cs" />
+    <Compile Include="IConfigurationPipeline.cs" />
     <Compile Include="RootCompatibilityExtensions.cs" />
     <Compile Include="CurrentConfigurationEnvironment.cs" />
     <Compile Include="Attributes\CustomCultureAttribute.cs" />

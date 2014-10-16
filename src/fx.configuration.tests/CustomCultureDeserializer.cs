@@ -20,37 +20,34 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
+using FX.Configuration.Deserializers;
 
 namespace FX.Configuration.Tests
 {
     /// <summary>
     /// A custom configuration provider
     /// </summary>
-    internal class CustomCultureAppConfigurationProvider : AppConfigurationProvider
+    internal class CustomCultureDeserializer : ISettingDeserializer<decimal>
     {
         /// <summary>
-        /// Gets the deserialized value
+        /// Deserializes the specified input value to a typed value
         /// </summary>
-        /// <param name="deserializers">The deserializers</param>
+        /// <param name="input">The input value</param>
         /// <param name="property">The property</param>
-        /// <param name="rawSetting">The raw setting</param>
-        /// <returns>The value</returns>
-        protected override object GetDeserializedValue(IEnumerable<object> deserializers, PropertyInfo property, object rawSetting)
+        /// <param name="cultureInfo">The culture information</param>
+        /// <param name="result">The result value</param>
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out decimal result)
         {
-            object result;
             if (property.Name == "DecimalPropertyInCustomCulture")
             {
-                result = Convert.ToDecimal(rawSetting, new CultureInfo("ru-RU"));
+                result = Convert.ToDecimal(input, new CultureInfo("ru-RU"));
             }
             else
             {
-                result = base.GetDeserializedValue(deserializers, property, rawSetting);
+                result = 0;
             }
-
-            return result;
         }
     }
 }

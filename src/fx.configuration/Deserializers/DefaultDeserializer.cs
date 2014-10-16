@@ -21,6 +21,7 @@
 
 using System;
 using System.Globalization;
+using System.Reflection;
 
 namespace FX.Configuration.Deserializers
 {
@@ -63,10 +64,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out string result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out string result)
         {
             result = input == null ? null : input.ToString();
         }
@@ -75,10 +76,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out bool result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out bool result)
         {
             result = Convert.ToBoolean(input, cultureInfo);
         }
@@ -87,10 +88,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out char result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out char result)
         {
             result = Convert.ToChar(input, cultureInfo);
         }
@@ -99,10 +100,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out sbyte result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out sbyte result)
         {
             result = Convert.ToSByte(input, cultureInfo);
         }
@@ -111,10 +112,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out byte result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out byte result)
         {
             result = Convert.ToByte(input, cultureInfo);
         }
@@ -123,10 +124,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out short result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out short result)
         {
             result = Convert.ToInt16(input, cultureInfo);
         }
@@ -135,10 +136,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out ushort result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out ushort result)
         {
             result = Convert.ToUInt16(input, cultureInfo);
         }
@@ -147,10 +148,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out int result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out int result)
         {
             result = Convert.ToInt32(input, cultureInfo);
         }
@@ -159,10 +160,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out uint result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out uint result)
         {
             result = Convert.ToUInt32(input, cultureInfo);
         }
@@ -171,10 +172,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out long result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out long result)
         {
             result = Convert.ToInt64(input, cultureInfo);
         }
@@ -183,10 +184,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out ulong result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out ulong result)
         {
             result = Convert.ToUInt64(input, cultureInfo);
         }
@@ -195,10 +196,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out float result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out float result)
         {
             result = Convert.ToSingle(input, cultureInfo);
         }
@@ -207,10 +208,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out double result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out double result)
         {
             result = Convert.ToDouble(input, cultureInfo);
         }
@@ -219,10 +220,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out decimal result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out decimal result)
         {
             result = Convert.ToDecimal(input, cultureInfo);
         }
@@ -231,10 +232,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out DateTime result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out DateTime result)
         {
             result = Convert.ToDateTime(input, cultureInfo);
         }
@@ -243,10 +244,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out TimeSpan result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out TimeSpan result)
         {
             result = ((string)input).Parse(cultureInfo);
         }
@@ -255,10 +256,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out Guid result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out Guid result)
         {
             result = new Guid((string)input);
         }
@@ -267,10 +268,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out Uri result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out Uri result)
         {
             result = new Uri((string)input);
         }

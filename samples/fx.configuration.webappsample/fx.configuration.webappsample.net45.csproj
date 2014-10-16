@@ -38,9 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="fx.configuration, Version=0.1.10.0, Culture=neutral, PublicKeyToken=d6b5ff1ed8812a28, processorArchitecture=MSIL">
+    <Reference Include="fx.configuration, Version=0.2.0.0, Culture=neutral, PublicKeyToken=d6b5ff1ed8812a28, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\FX.Configuration.0.1.14\lib\net45\fx.configuration.dll</HintPath>
+      <HintPath>packages\FX.Configuration.0.2.0\lib\net45\fx.configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />

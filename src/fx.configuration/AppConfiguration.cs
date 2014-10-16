@@ -20,6 +20,8 @@
 */
 
 using System.Collections.Generic;
+using System.Linq;
+using FX.Configuration.Deserializers;
 
 namespace FX.Configuration
 {
@@ -32,16 +34,35 @@ namespace FX.Configuration
         /// Initializes a new instance of the <see cref="AppConfiguration" /> class.
         /// </summary>
         protected AppConfiguration()
-            : this(new[] { new AppConfigurationProvider() })
+            : this(new object[] { new DefaultDeserializer() })
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppConfiguration" /> class.
         /// </summary>
-        /// <param name="configurationProviders">The configuration providers.</param>
+        /// <param name="configurationProviders">The configuration providers</param>
         protected AppConfiguration(IEnumerable<IConfigurationProvider> configurationProviders)
-            : base(configurationProviders)
+            : this(configurationProviders, new object[] { new DefaultDeserializer() })
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppConfiguration" /> class.
+        /// </summary>
+        /// <param name="deserializers">The deserializers</param>
+        protected AppConfiguration(IEnumerable<object> deserializers)
+            : this(new[] { new AppConfigurationProvider() }, deserializers)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppConfiguration" /> class.
+        /// </summary>
+        /// <param name="configurationProviders">The configuration providers</param>
+        /// <param name="deserializers">The deserializers</param>
+        protected AppConfiguration(IEnumerable<IConfigurationProvider> configurationProviders, IEnumerable<object> deserializers)
+            : base(configurationProviders, deserializers)
         {
             base.Fill();
         }

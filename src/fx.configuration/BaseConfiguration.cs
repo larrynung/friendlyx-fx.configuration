@@ -19,9 +19,7 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace FX.Configuration
 {
@@ -33,45 +31,42 @@ namespace FX.Configuration
         /// <summary>
         /// Initializes a new instance of the <see cref="T:BaseConfiguration" /> class.
         /// </summary>
-        protected BaseConfiguration()
+        /// <param name="configurationProviders">The configuration providers</param>
+        protected BaseConfiguration(IEnumerable<IConfigurationProvider> configurationProviders)
+            : this(new ConfigurationPipeline(configurationProviders))
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:BaseConfiguration" /> class.
         /// </summary>
-        /// <param name="configurationProviders">The configuration providers.</param>
-        protected BaseConfiguration(IEnumerable<IConfigurationProvider> configurationProviders)
+        /// <param name="configurationProviders">The configuration providers</param>
+        /// <param name="deserializers">The deserializers</param>
+        protected BaseConfiguration(IEnumerable<IConfigurationProvider> configurationProviders, IEnumerable<object> deserializers)
+            : this(new ConfigurationPipeline(configurationProviders, deserializers))
         {
-            this.ConfigurationProviders = configurationProviders.ToList();
         }
 
         /// <summary>
-        /// Gets the configuration providers
+        /// Initializes a new instance of the <see cref="BaseConfiguration"/> class.
         /// </summary>
-        protected List<IConfigurationProvider> ConfigurationProviders { get; private set; }
+        /// <param name="configurationPipeline">The configuration pipeline</param>
+        protected BaseConfiguration(ConfigurationPipeline configurationPipeline)
+        {
+            this.Pipeline = configurationPipeline;
+        }
+
+        /// <summary>
+        /// Gets the configuration pipeline
+        /// </summary>
+        protected ConfigurationPipeline Pipeline { get; private set; }
 
         /// <summary>
         /// Fills this instance of configuration
         /// </summary>
         protected virtual void Fill()
         {
-            IEnumerable<IConfigurationProvider> providers;
-            if (string.IsNullOrEmpty(CurrentConfigurationEnvironment.Name))
-            {
-                // If current environment name is not set then we find providers with no EnvironmentAttribute or EnvironmentAttribute.Name is empty
-                providers = this.ConfigurationProviders.Where(provider => !provider.GetConfigurationEnvironmentAttributes().Any() || provider.GetConfigurationEnvironmentAttributes().Any(attribute => string.IsNullOrEmpty(attribute.Name)));
-            }
-            else
-            {
-                // Otherwise we find a match
-                providers = this.ConfigurationProviders.Where(provider => provider.GetConfigurationEnvironmentAttributes().Any(attribute => attribute.Name == CurrentConfigurationEnvironment.Name));
-            }
-
-            foreach (IConfigurationProvider configurationProvider in providers)
-            {
-                configurationProvider.Fill(this);
-            }
+            this.Pipeline.Run(this);
         }
     }
 }

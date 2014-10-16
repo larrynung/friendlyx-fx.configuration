@@ -21,6 +21,7 @@
 
 using System;
 using System.Globalization;
+using System.Reflection;
 using FX.Configuration.Deserializers;
 
 namespace FX.Configuration.Tests
@@ -34,10 +35,10 @@ namespace FX.Configuration.Tests
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out decimal result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out decimal result)
         {
             result = Convert.ToDecimal(input, new CultureInfo("ru-RU"));
         }

@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 
 namespace FX.Configuration.Deserializers
 {
@@ -54,10 +55,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out IEnumerable<T> result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out IEnumerable<T> result)
         {
             string inputString = input as string;
             if (inputString == null)
@@ -67,24 +68,29 @@ namespace FX.Configuration.Deserializers
 
             string[] values = inputString.Split(this.Delimiter.ToCharArray());
 
-            Type typeOfItem = typeof(T);
+            Type[] genericArgumentsTypes = property.PropertyType.GetGenericArguments();
+            if (genericArgumentsTypes.Length != 1)
+            {
+                throw new InvalidOperationException(string.Format("Not supported property generic type: '{0}'. Only generic types with one argument are supported.", property.PropertyType));
+            }
+
             result = (from stringValue in values
                       let deserializer = new DefaultDeserializer()
-                      let foundInterface = deserializer.GetInterfaceType(typeOfItem)
-                      select deserializer.GetValueFromInterface(stringValue, typeOfItem, cultureInfo, foundInterface)).ToList().ConvertAll(item => (T)item);
+                      let foundInterface = deserializer.GetInterfaceType(genericArgumentsTypes[0])
+                      select deserializer.GetValueFromInterface(stringValue, property, cultureInfo, foundInterface)).ToList().ConvertAll(item => (T)item);
         }
 
         /// <summary>
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out object result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out object result)
         {
             IEnumerable<T> enumerableResult;
-            this.Deserialize(input, outputType, cultureInfo, out enumerableResult);
+            this.Deserialize(input, property, cultureInfo, out enumerableResult);
             result = enumerableResult;
         }
     }

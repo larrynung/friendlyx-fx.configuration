@@ -31,30 +31,6 @@ namespace FX.Configuration.Tests
     public class AppConfigurationFacts
     {
         /// <summary>
-        /// Application configuration provider fills configuration correctly
-        /// </summary>
-        [Fact]
-        public void AppConfigProviderFillsConfigCorrectly()
-        {
-            // Arrange
-            TestAppConfiguration configuration = new TestAppConfiguration();
-            AppConfigurationProvider configurationProvider = new AppConfigurationProvider();
-
-            // Act
-            configurationProvider.Fill(configuration);
-
-            // Assert
-            // Verify simple properties
-            configuration.StringProperty.ShouldBe("test-value");
-            configuration.BoolProperty.ShouldBe(true);
-            configuration.DecimalProperty.ShouldBe((decimal)16.6271);
-
-            // Verify struct properties
-            configuration.TimeSpanProperty.ShouldBe(TimeSpan.Parse("19:18:09.19288"));
-            configuration.GuidProperty.ShouldBe(new Guid("691BBBD5-DAC8-4991-8D58-A271D2388954"));
-        }
-
-        /// <summary>
         /// A simple application configuration fills correctly
         /// </summary>
         [Fact]
@@ -81,14 +57,13 @@ namespace FX.Configuration.Tests
         public void AppConfigurationFillsCorrectlyWithCustomCultureSet()
         {
             // Arrange
-            TestAppConfiguration configuration = new TestAppConfiguration(new[] { new CustomCultureAppConfigurationProvider()});
+            TestAppConfiguration configuration = new TestAppConfiguration();
 
             // Assert
             // Verify simple properties
             configuration.StringProperty.ShouldBe("test-value");
             configuration.BoolProperty.ShouldBe(true);
             configuration.DecimalPropertyWithCustomCulture.ShouldBe((decimal)9.19288);
-            configuration.DecimalPropertyInCustomCulture.ShouldBe((decimal)678.1826);
             configuration.DecimalWithCustomDeserializer.ShouldBe((decimal)1892.892);
 
             // Verify struct properties

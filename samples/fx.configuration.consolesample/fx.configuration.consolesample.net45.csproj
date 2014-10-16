@@ -35,9 +35,9 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="fx.configuration, Version=0.1.10.0, Culture=neutral, PublicKeyToken=d6b5ff1ed8812a28, processorArchitecture=MSIL">
+    <Reference Include="fx.configuration, Version=0.2.0.0, Culture=neutral, PublicKeyToken=d6b5ff1ed8812a28, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\FX.Configuration.0.1.14\lib\net45\fx.configuration.dll</HintPath>
+      <HintPath>packages\FX.Configuration.0.2.0\lib\net45\fx.configuration.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

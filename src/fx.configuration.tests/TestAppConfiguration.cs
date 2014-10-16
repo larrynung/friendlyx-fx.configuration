@@ -41,9 +41,28 @@ namespace FX.Configuration.Tests
         /// <summary>
         /// Initializes a new instance of the <see cref="TestAppConfiguration"/> class.
         /// </summary>
-        /// <param name="configurationProviders">The configuration providers.</param>
+        /// <param name="configurationProviders">The configuration providers</param>
         public TestAppConfiguration(IEnumerable<IConfigurationProvider> configurationProviders)
             : base(configurationProviders)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestAppConfiguration" /> class.
+        /// </summary>
+        /// <param name="deserializers">The deserializers</param>
+        public TestAppConfiguration(IEnumerable<object> deserializers)
+            : base(deserializers)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestAppConfiguration" /> class.
+        /// </summary>
+        /// <param name="configurationProviders">The configuration providers</param>
+        /// <param name="deserializers">The deserializers</param>
+        public TestAppConfiguration(IEnumerable<IConfigurationProvider> configurationProviders, IEnumerable<object> deserializers)
+            : base(configurationProviders, deserializers)
         {
         }
 
@@ -77,11 +96,6 @@ namespace FX.Configuration.Tests
         /// </summary>
         [CustomCulture("ru-RU")]
         public decimal DecimalPropertyWithCustomCulture { get; private set; }
-
-        /// <summary>
-        /// Gets the decimal property in custom culture
-        /// </summary>
-        public decimal DecimalPropertyInCustomCulture { get; private set; }
 
         /// <summary>
         /// Gets the decimal with custom deserializer specified

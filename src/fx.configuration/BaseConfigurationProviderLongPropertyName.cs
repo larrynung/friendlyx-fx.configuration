@@ -19,8 +19,6 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
-using System.Collections.Generic;
 using FX.Configuration.Resolvers;
 
 namespace FX.Configuration
@@ -35,15 +33,6 @@ namespace FX.Configuration
         /// </summary>
         protected BaseConfigurationProviderLongPropertyName()
             : base(new LongPropertyNameSettingNameResolver())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseConfigurationProviderLongPropertyName"/> class.
-        /// </summary>
-        /// <param name="settingsDeserializers">The settings deserializers</param>
-        protected BaseConfigurationProviderLongPropertyName(IEnumerable<object> settingsDeserializers)
-            : base(settingsDeserializers, new LongPropertyNameSettingNameResolver())
         {
         }
     }

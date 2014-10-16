@@ -19,9 +19,8 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using FX.Configuration.Resolvers;
 
 namespace FX.Configuration
@@ -39,15 +38,6 @@ namespace FX.Configuration
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppConfigurationProvider"/> class.
-        /// </summary>
-        /// <param name="settingsDeserializers">The settings deserializers</param>
-        public AppConfigurationProvider(IEnumerable<object> settingsDeserializers)
-            : base(settingsDeserializers)
-        {
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="AppConfigurationProvider" /> class.
         /// </summary>
         /// <param name="settingNameResolver">The setting name resolver.</param>
@@ -57,24 +47,18 @@ namespace FX.Configuration
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppConfigurationProvider" /> class.
+        /// Tries the get a value
         /// </summary>
-        /// <param name="settingsDeserializers">The settings deserializers</param>
-        /// <param name="settingNameResolver">The setting name resolver</param>
-        public AppConfigurationProvider(IEnumerable<object> settingsDeserializers, ISettingNameResolver settingNameResolver)
-            : base(settingsDeserializers, settingNameResolver)
+        /// <param name="settingName">Name of the setting</param>
+        /// <param name="rawValue">The raw value</param>
+        /// <returns>True is the setting was found</returns>
+        protected override bool TryGetSettingValue(string settingName, out object rawValue)
         {
-        }
+            bool found = ConfigurationManager.AppSettings.AllKeys.Any(key => key == settingName);
 
-        /// <summary>
-        /// Gets the value
-        /// </summary>
-        /// <param name="valueKey">The value key</param>
-        /// <returns>The value</returns>
-        public override object GetRawValue(string valueKey)
-        {
-            string stringValue = ConfigurationManager.AppSettings[valueKey];
-            return stringValue;
+            rawValue = found ? ConfigurationManager.AppSettings[settingName] : null;
+
+            return found;
         }
     }
 }

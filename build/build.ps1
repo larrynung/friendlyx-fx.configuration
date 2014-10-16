@@ -1,8 +1,8 @@
 properties {
     $signKeyPath = "../../keys/fx.key.pfx"
     $name = "net45"
-    $majorVersion = "0.1"
-    $majorWithReleaseVersion = "0.1.17"
+    $majorVersion = "0.2"
+    $majorWithReleaseVersion = "0.2.0"
     $version = GetVersion $majorWithReleaseVersion
     $baseDir  = resolve-path ..
     $sourceDir = "$baseDir\src"
@@ -15,7 +15,20 @@ properties {
 
 task default -depends Build
 
-task Build {
+task CleanOldBuild {
+    Write-Host -ForegroundColor Yellow "Cleaning obj\bin and old build folders"
+
+    foreach ($build in $builds)
+    {
+        $projectDir = $build.SrcFolder
+        DeleteFolder "$sourceDir/$projectDir/obj"
+        DeleteFolder "$sourceDir/$projectDir/bin"
+
+        DeleteFolder (GetFinalDir $build)
+    }
+}
+
+task Build -depends CleanOldBuild {
 
     Write-Host -ForegroundColor Green "Updating assembly version"
     Write-Host
@@ -26,8 +39,7 @@ task Build {
         $srcDir = $build.SrcFolder
         $name = $build.Name
         $targetFramework = $build.TargetFramework
-        $finalDir = $build.FinalDir
-        $finalDir = "$baseDir/build/$finalDir"
+        $finalDir = GetFinalDir $build
         $projectFileName = "../src/$srcDir/$name.$targetFramework.csproj"
         Write-Host -ForegroundColor Green "Building " $name
         Write-Host -ForegroundColor Green "FinalDir " $finalDir
@@ -70,4 +82,19 @@ function GetVersion($majorVersion)
     $revision = "{0:00}{1:00}" -f $hour, $minute
     
     return $majorVersion + "." + $minor
+}
+
+function DeleteFolder($folderPath)
+{
+    if(Test-Path -Path $folderPath)
+    {
+        del $folderPath -Recurse -Force
+    }
+}
+
+function GetFinalDir($build)
+{
+    $finalDir = $build.FinalDir
+    $finalDir = "$baseDir/build/$finalDir"
+    return $finalDir
 }

@@ -19,9 +19,8 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 
 namespace FX.Configuration
 {
@@ -31,30 +30,18 @@ namespace FX.Configuration
     public class AppConfigurationProviderLongPropertyName : BaseConfigurationProviderLongPropertyName
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppConfigurationProvider"/> class.
+        /// Tries the get a value
         /// </summary>
-        public AppConfigurationProviderLongPropertyName()
+        /// <param name="settingName">Name of the setting</param>
+        /// <param name="rawValue">The raw value</param>
+        /// <returns>True is the setting was found</returns>
+        protected override bool TryGetSettingValue(string settingName, out object rawValue)
         {
-        }
+            bool found = ConfigurationManager.AppSettings.AllKeys.Any(key => key == settingName);
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AppConfigurationProvider"/> class.
-        /// </summary>
-        /// <param name="settingsDeserializers">The settings deserializers</param>
-        public AppConfigurationProviderLongPropertyName(IEnumerable<object> settingsDeserializers)
-            : base(settingsDeserializers)
-        {
-        }
+            rawValue = found ? ConfigurationManager.AppSettings[settingName] : null;
 
-        /// <summary>
-        /// Gets the value
-        /// </summary>
-        /// <param name="valueKey">The value key</param>
-        /// <returns>The value</returns>
-        public override object GetRawValue(string valueKey)
-        {
-            string stringValue = ConfigurationManager.AppSettings[valueKey];
-            return stringValue;
+            return found;
         }
     }
 }

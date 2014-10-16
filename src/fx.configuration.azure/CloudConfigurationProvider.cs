@@ -19,7 +19,6 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System.Collections.Generic;
 using Microsoft.WindowsAzure;
 
 namespace FX.Configuration.Azure
@@ -30,30 +29,15 @@ namespace FX.Configuration.Azure
     public class CloudConfigurationProvider : BaseConfigurationProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CloudConfigurationProvider"/> class.
+        /// Tries the get a value
         /// </summary>
-        public CloudConfigurationProvider()
+        /// <param name="settingName">Name of the setting</param>
+        /// <param name="rawValue">The raw value</param>
+        /// <returns>True is the setting was found</returns>
+        protected override bool TryGetSettingValue(string settingName, out object rawValue)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CloudConfigurationProvider"/> class.
-        /// </summary>
-        /// <param name="settingsDeserializers">The settings deserializers</param>
-        public CloudConfigurationProvider(IEnumerable<object> settingsDeserializers)
-            : base(settingsDeserializers)
-        {
-        }
-
-        /// <summary>
-        /// Gets the value
-        /// </summary>
-        /// <param name="valueKey">The value key</param>
-        /// <returns>The value</returns>
-        public override object GetRawValue(string valueKey)
-        {
-            string stringValue = CloudConfigurationManager.GetSetting(valueKey);
-            return stringValue;
+            rawValue = CloudConfigurationManager.GetSetting(settingName);
+            return rawValue == null;
         }
     }
 }

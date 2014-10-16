@@ -31,23 +31,6 @@ namespace FX.Configuration.Tests
     public class AppConfigurationLongPropertyNameFacts
     {
         /// <summary>
-        /// Application configuration provider fills configuration correctly
-        /// </summary>
-        [Fact]
-        public void AppConfigProviderFillsConfigCorrectly()
-        {
-            // Arrange
-            TestAppConfigurationLongPropertyName configuration = new TestAppConfigurationLongPropertyName();
-            AppConfigurationProviderLongPropertyName configurationProvider = new AppConfigurationProviderLongPropertyName();
-
-            // Act
-            configurationProvider.Fill(configuration);
-
-            // Assert
-            VerifyConfiguration(configuration);
-        }
-
-        /// <summary>
         /// A simple application configuration fills correctly
         /// </summary>
         [Fact]

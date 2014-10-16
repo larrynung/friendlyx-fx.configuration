@@ -19,6 +19,8 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using System.Reflection;
+
 namespace FX.Configuration
 {
     /// <summary>
@@ -27,9 +29,11 @@ namespace FX.Configuration
     public interface IConfigurationProvider
     {
         /// <summary>
-        /// Fills the configuration
+        /// Tries to get the raw value
         /// </summary>
-        /// <typeparam name="T">The type of the configuration</typeparam>
-        void Fill<T>(T config) where T : BaseConfiguration;
+        /// <param name="property">The property to get a value for</param>
+        /// <param name="rawValue">The raw value</param>
+        /// <returns>True if the value was found</returns>
+        bool TryGetRawValue(PropertyInfo property, out object rawValue);
     }
 }

@@ -59,12 +59,14 @@
     <Compile Include="BaseConfigurationProvider.cs" />
     <Compile Include="BaseConfigurationProviderLongPropertyName.cs" />
     <Compile Include="CompatibilityExtensions.net40.cs" />
+    <Compile Include="ConfigurationPipeline.cs" />
     <Compile Include="CurrentConfigurationEnvironment.cs" />
     <Compile Include="Deserializers\DefaultDeserializer.cs" />
     <Compile Include="Deserializers\EnumerableSettingDeserializer.cs" />
     <Compile Include="Deserializers\ISettingDeserializer.cs" />
     <Compile Include="Deserializers\JsonDeserializer.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="IConfigurationPipeline.cs" />
     <Compile Include="IConfigurationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resolvers\ISettingNameResolver.cs" />
@@ -73,8 +75,6 @@
     <Compile Include="RootCompatibilityExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fx.key.pfx" />
-    <None Include="fx.public.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

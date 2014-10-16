@@ -19,6 +19,8 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using System;
+using System.Collections.Generic;
 using FX.Configuration.Tests.Environment;
 using Xunit;
 using Xunit.Should;
@@ -38,10 +40,7 @@ namespace FX.Configuration.Tests
         {
             // Arrange
             CurrentConfigurationEnvironment.Name = null;
-            TestAppConfiguration appConfiguration = new TestAppConfiguration(new[] { new TestAppConfigurationProviderWithEnvironment() });
-
-            // Assert
-            appConfiguration.StringProperty.ShouldBeNull();
+            Assert.Throws<InvalidOperationException>(() => new TestAppConfiguration((IEnumerable<IConfigurationProvider>)new[] { new TestAppConfigurationProviderWithEnvironment() }));
         }
 
         /// <summary>
@@ -52,24 +51,21 @@ namespace FX.Configuration.Tests
         {
             // Arrange
             CurrentConfigurationEnvironment.Name = ConfigConstants.TestConfigEnvironment;
-            TestAppConfiguration appConfiguration = new TestAppConfiguration(new[] { new TestAppConfigurationProviderWithEnvironment() });
+            TestAppConfiguration appConfiguration = new TestAppConfiguration((IEnumerable<IConfigurationProvider>)new[] { new TestAppConfigurationProviderWithEnvironment() });
 
             // Assert
             appConfiguration.StringProperty.ShouldBe("test-value");
         }
 
         /// <summary>
-        /// Reads the configuration correctly if the current environment is set and no providers found
+        /// Throws an exception if the current environment is set and no providers found
         /// </summary>
         [Fact]
-        public void ReadsConfigurationCorrectlyIfCurrentIsSetAndNoProvider()
+        public void ThrowsIfCurrentIsSetAndNoProvider()
         {
             // Arrange
             CurrentConfigurationEnvironment.Name = ConfigConstants.TestConfigEnvironment;
-            TestAppConfiguration appConfiguration = new TestAppConfiguration(new[] { new AppConfigurationProvider() });
-
-            // Assert
-            appConfiguration.StringProperty.ShouldBeNull();
+            Assert.Throws<InvalidOperationException>(() => new TestAppConfiguration((IEnumerable<IConfigurationProvider>)new[] { new AppConfigurationProvider() }));
         }
 
         /// <summary>
@@ -80,18 +76,17 @@ namespace FX.Configuration.Tests
         {
             // Arrange
             CurrentConfigurationEnvironment.Name = ConfigConstants.TestConfigEnvironment;
-            TestAppConfiguration appConfiguration = new TestAppConfiguration(new[] { new TestAppConfigurationProviderWithEnvironment() });
+            TestAppConfiguration appConfiguration = new TestAppConfiguration((IEnumerable<IConfigurationProvider>)new[] { new TestAppConfigurationProviderWithEnvironment() });
 
             // Act & Assert
             appConfiguration.StringProperty.ShouldBe("test-value");
 
             CurrentConfigurationEnvironment.Name = ConfigConstants.TestConfigEnvironment2;
-            appConfiguration = new TestAppConfiguration(new[] { new TestAppConfigurationProviderWithEnvironment() });
+            appConfiguration = new TestAppConfiguration((IEnumerable<IConfigurationProvider>)new[] { new TestAppConfigurationProviderWithEnvironment() });
             appConfiguration.StringProperty.ShouldBe("test-value");
 
             CurrentConfigurationEnvironment.Name = "test3";
-            appConfiguration = new TestAppConfiguration(new[] { new TestAppConfigurationProviderWithEnvironment() });
-            appConfiguration.StringProperty.ShouldBeNull();
+            Assert.Throws<InvalidOperationException>(() => new TestAppConfiguration((IEnumerable<IConfigurationProvider>)new[] { new TestAppConfigurationProviderWithEnvironment() }));
         }
     }
 }

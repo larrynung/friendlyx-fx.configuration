@@ -19,8 +19,8 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
 using System.Globalization;
+using System.Reflection;
 using Newtonsoft.Json;
 
 namespace FX.Configuration.Deserializers
@@ -59,10 +59,10 @@ namespace FX.Configuration.Deserializers
         /// Deserializes the specified input value to a typed value
         /// </summary>
         /// <param name="input">The input value</param>
-        /// <param name="outputType">Type of the output</param>
+        /// <param name="property">The property</param>
         /// <param name="cultureInfo">The culture information</param>
         /// <param name="result">The result value</param>
-        public void Deserialize(object input, Type outputType, CultureInfo cultureInfo, out object result)
+        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out object result)
         {
             if ((input as string) == null)
             {
@@ -71,7 +71,7 @@ namespace FX.Configuration.Deserializers
             else
             {
                 JsonSerializerSettings settings = this.GetSerializerSettings(input, cultureInfo);
-                result = JsonConvert.DeserializeObject((string)input, outputType, settings);
+                result = JsonConvert.DeserializeObject((string)input, property.PropertyType, settings);
             }
         }
     }

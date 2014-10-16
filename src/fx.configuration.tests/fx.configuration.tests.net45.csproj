@@ -68,7 +68,7 @@
     <Compile Include="ComplexSettingValue.cs" />
     <Compile Include="ConfigConstants.cs" />
     <Compile Include="CurrentEnvironmentFacts.cs" />
-    <Compile Include="CustomCultureAppConfigurationProvider.cs" />
+    <Compile Include="CustomCultureDeserializer.cs" />
     <Compile Include="CustomCultureDecimalDeserializer.cs" />
     <Compile Include="CustomSettingNameResolver.cs" />
     <Compile Include="EnumerableSettingAttributeFacts.cs" />

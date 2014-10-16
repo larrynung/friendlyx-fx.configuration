@@ -35,6 +35,16 @@ namespace FX.Configuration
     internal static class Extensions
     {
         /// <summary>
+        /// Gets the properties of the given type
+        /// </summary>
+        /// <param name="configurationType">Type of the configuration.</param>
+        /// <returns>An array of property infos</returns>
+        public static PropertyInfo[] GetProperties(this Type configurationType)
+        {
+            return configurationType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        }
+
+        /// <summary>
         /// Gets the configuration environment attributes.
         /// </summary>
         /// <param name="configurationProvider">The configuration provider.</param>
@@ -87,6 +97,14 @@ namespace FX.Configuration
             Type interfaceType = typeof(ISettingDeserializer<>).MakeGenericType(propertyType);
             Type[] implementedInterfaces = deserializer.GetType().GetInterfaces();
             Type foundInterface = implementedInterfaces.FirstOrDefault(type => type == interfaceType);
+
+            if (foundInterface == null && propertyType.IsClass)
+            {
+                // We try to get a generic interface for 'object'
+                interfaceType = typeof(ISettingDeserializer<>).MakeGenericType(typeof(object));
+                foundInterface = implementedInterfaces.FirstOrDefault(type => type == interfaceType);
+            }
+
             return foundInterface;
         }
 
@@ -95,13 +113,13 @@ namespace FX.Configuration
         /// </summary>
         /// <param name="deserializer">The deserializer</param>
         /// <param name="rawSetting">The raw setting</param>
-        /// <param name="propertyType">Type of the property</param>
+        /// <param name="property">The property</param>
         /// <param name="customCultureInfo">The custom culture information</param>
         /// <param name="interfaceType">Type of the interface</param>
         /// <returns></returns>
-        public static object GetValueFromInterface(this object deserializer, object rawSetting, Type propertyType, CultureInfo customCultureInfo, Type interfaceType)
+        public static object GetValueFromInterface(this object deserializer, object rawSetting, PropertyInfo property, CultureInfo customCultureInfo, Type interfaceType)
         {
-            object[] parameters = { rawSetting, propertyType, customCultureInfo, null };
+            object[] parameters = { rawSetting, property, customCultureInfo, null };
             interfaceType.GetMethod("Deserialize").Invoke(deserializer, parameters);
             object value = parameters[parameters.Length - 1];
             return value;
