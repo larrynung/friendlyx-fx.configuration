@@ -135,13 +135,13 @@ namespace FX.Configuration
                     // Get a raw value from a provider
                     object rawSetting = this.GetRawPropertyValue(property, providers);
 
-                    // TODO: Add the raw value preprocessing (like for decription)
+                    object preprocessedSetting = this.PreprocessSetting(property, rawSetting);
 
                     // Get deserializers can be used for the property (it can be a deserializer defined in a property attribute or in the pipeline itself)
                     List<object> deserializers = this.GetDeserializers(property);
 
                     // Deserialize the raw value
-                    object value = this.GetDeserializedValue(deserializers, property, rawSetting);
+                    object value = this.GetDeserializedValue(deserializers, property, preprocessedSetting);
 
                     property.SetValue(config, value, new object[] { });
                 }
@@ -149,11 +149,23 @@ namespace FX.Configuration
         }
 
         /// <summary>
+        /// Preprocesses the setting value (like decrypt the value before deserialization)
+        /// </summary>
+        /// <param name="property">The property</param>
+        /// <param name="rawSetting">The raw setting</param>
+        /// <returns>A preprocessed setting value</returns>
+        protected virtual object PreprocessSetting(PropertyInfo property, object rawSetting)
+        {
+            // By default we don't do preprocessing
+            return rawSetting;
+        }
+
+        /// <summary>
         /// Gets the list of deserializers for the given property
         /// </summary>
         /// <param name="property">The property</param>
         /// <returns>A list of deserializers</returns>
-        protected  virtual List<object> GetDeserializers(PropertyInfo property)
+        protected virtual List<object> GetDeserializers(PropertyInfo property)
         {
             List<object> deserializers = new List<object>();
 
