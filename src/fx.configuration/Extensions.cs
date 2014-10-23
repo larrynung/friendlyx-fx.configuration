@@ -76,6 +76,16 @@ namespace FX.Configuration
         }
 
         /// <summary>
+        /// Gets the preprocess attributes.
+        /// </summary>
+        /// <param name="property">The property</param>
+        /// <returns>A list of preprocess attributes</returns>
+        public static IEnumerable<PreprocessAttribute> GetPreprocessAttributes(this PropertyInfo property)
+        {
+            return property.GetCustomAttributes<PreprocessAttribute>();
+        }
+
+        /// <summary>
         /// Gets the culture information
         /// </summary>
         /// <param name="property">The property</param>

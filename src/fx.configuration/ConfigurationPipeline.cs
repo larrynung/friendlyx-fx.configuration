@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using FX.Configuration.Attributes;
 using FX.Configuration.Deserializers;
 
 namespace FX.Configuration
@@ -156,8 +157,10 @@ namespace FX.Configuration
         /// <returns>A preprocessed setting value</returns>
         protected virtual object PreprocessSetting(PropertyInfo property, object rawSetting)
         {
-            // By default we don't do preprocessing
-            return rawSetting;
+            IEnumerable<PreprocessAttribute> preprocessAttributes = property.GetPreprocessAttributes();
+
+            object preprocessedValue = preprocessAttributes.Aggregate(rawSetting, (current, preprocess) => preprocess.Preprocess(current));
+            return preprocessedValue;
         }
 
         /// <summary>

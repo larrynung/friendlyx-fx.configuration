@@ -55,6 +55,7 @@
     <Compile Include="Attributes\DeserializerAttribute.cs" />
     <Compile Include="Attributes\EnumerableSettingAttribute.cs" />
     <Compile Include="Attributes\JsonSettingAttribute.cs" />
+    <Compile Include="Attributes\PreprocessAttribute.cs" />
     <Compile Include="BaseConfiguration.cs" />
     <Compile Include="BaseConfigurationProvider.cs" />
     <Compile Include="BaseConfigurationProviderLongPropertyName.cs" />

@@ -75,10 +75,12 @@
     <Compile Include="CustomSettingNameResolver.cs" />
     <Compile Include="EnumerableSettingAttributeFacts.cs" />
     <Compile Include="Environment\TestAppConfigurationProviderWithEnvironment.cs" />
+    <Compile Include="PreprocessAttributeFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAppConfiguration.cs" />
     <Compile Include="TestAppConfigurationEnumerableSetting.cs" />
     <Compile Include="TestAppConfigurationLongPropertyName.cs" />
+    <Compile Include="TestAppConfigurationWithPreprocess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
