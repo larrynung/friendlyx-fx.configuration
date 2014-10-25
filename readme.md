@@ -17,12 +17,12 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
         /// <summary>
         /// Gets or sets the display name.
         /// </summary>
-        public string DisplayName { get; set; }
+        public string DisplayName { get; private set; }
 
         /// <summary>
         /// Gets or sets the count.
         /// </summary>
-        public int Count { get; set; }
+        public int Count { get; private set; }
     }
 
 ## Program.cs
