@@ -19,37 +19,23 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System.Collections.Generic;
 using FX.Configuration.Attributes;
 
 namespace FX.Configuration.ConsoleSample
 {
     /// <summary>
-    /// Main application configuration
+    /// A custom preprocessor to process a setting value before it is set to the property
     /// </summary>
-    public class MainAppConfiguration : AppConfiguration
+    public class MyCustomSettingPreprocessorAttribute : PreprocessAttribute
     {
         /// <summary>
-        /// Gets the application version
+        /// Preprocesses the specified setting value
         /// </summary>
-        public string AppVersion { get; private set; }
-
-        /// <summary>
-        /// Gets the complex details
-        /// </summary>
-        [JsonSetting]
-        public ConfigurationComplexDetails ComplexDetails { get; private set; }
-
-        /// <summary>
-        /// Gets the integer values
-        /// </summary>
-        [EnumerableSetting("#", typeof(int))]
-        public List<int> IntegerValues { get; private set; }
-
-        /// <summary>
-        /// Gets the preprocessed setting
-        /// </summary>
-        [MyCustomSettingPreprocessor]
-        public string PreprocessedSetting { get; private set; }
+        /// <param name="settingValue">The original setting value</param>
+        /// <returns> A preprocessed value</returns>
+        public override object Preprocess(object settingValue)
+        {
+            return string.Format("PREPROCESSED VALUE ***** {0}",settingValue);
+        }
     }
 }

@@ -101,6 +101,8 @@ namespace FX.Configuration.ConsoleSample
             Console.WriteLine("ComplexDetails JSON: " + json);
 
             Console.WriteLine("Enumerable INT setting: " + string.Join("#", configuration.IntegerValues));
+            
+            Console.WriteLine("Preprocessed: " + configuration.PreprocessedSetting);
         }
 
         private static void DumpConfiguration(CustomSettingNameConfiguration configuration)
