@@ -19,9 +19,11 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using System;
 using System.Globalization;
 using System.Reflection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FX.Configuration.Deserializers
 {
@@ -64,15 +66,30 @@ namespace FX.Configuration.Deserializers
         /// <param name="result">The result value</param>
         public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out object result)
         {
-            if ((input as string) == null)
+            JToken token = input as JToken;
+            if (token != null)
             {
-                result = null;
+                result = this.ReadToken(property.PropertyType, token);
             }
             else
             {
-                JsonSerializerSettings settings = this.GetSerializerSettings(input, cultureInfo);
-                result = JsonConvert.DeserializeObject((string)input, property.PropertyType, settings);
+                string json = input as string;
+                if (json != null)
+                {
+                    JsonSerializerSettings settings = this.GetSerializerSettings(input, cultureInfo);
+                    result = JsonConvert.DeserializeObject((string)input, property.PropertyType, settings);
+                }
+                else
+                {
+                    result = null;
+                }
             }
+        }
+
+        private object ReadToken(Type typeOfObject, JToken token)
+        {
+            object deserializedObject = token.ToObject(typeOfObject);
+            return deserializedObject;
         }
     }
 }

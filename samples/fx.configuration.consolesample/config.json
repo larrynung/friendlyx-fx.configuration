@@ -1,0 +1,14 @@
+﻿{
+	"AppVersion" : "0.3.0",
+	"ComplexDetails" : {
+		"DisplayName" : "some-json-with-display-name",
+		"Expiration" : "2099-11-01T00:00:00",
+		"SomeDetails" : {
+			"Id" : "569efa2e-c315-426f-bc02-f76ab4e0eeda",
+			"Name" : "this-sub-name-in-json",
+			"Elapsed" : "1.10:04:19"
+		}
+	},
+	"IntegerValues" : [190, 267, 33, -1],
+	"PreprocessedSetting" : "some-setting-which-will-be-wrapped"
+}

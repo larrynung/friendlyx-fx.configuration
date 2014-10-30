@@ -66,6 +66,12 @@
   </Choose>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="customConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +98,7 @@
     <Compile Include="TestAppConfigurationEnumerableSetting.cs" />
     <Compile Include="TestAppConfigurationLongPropertyName.cs" />
     <Compile Include="TestAppConfigurationWithPreprocess.cs" />
+    <Compile Include="TestJsonConfiguration.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

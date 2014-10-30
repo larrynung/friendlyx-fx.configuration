@@ -75,16 +75,24 @@
     <Compile Include="CustomSettingNameResolver.cs" />
     <Compile Include="EnumerableSettingAttributeFacts.cs" />
     <Compile Include="Environment\TestAppConfigurationProviderWithEnvironment.cs" />
+    <Compile Include="JsonConfigurationFacts.cs" />
     <Compile Include="PreprocessAttributeFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAppConfiguration.cs" />
     <Compile Include="TestAppConfigurationEnumerableSetting.cs" />
     <Compile Include="TestAppConfigurationLongPropertyName.cs" />
     <Compile Include="TestAppConfigurationWithPreprocess.cs" />
+    <Compile Include="TestJsonConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="customConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\fx.configuration\fx.configuration.net40.csproj">

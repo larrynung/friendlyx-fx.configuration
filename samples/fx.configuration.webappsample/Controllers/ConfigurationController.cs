@@ -35,6 +35,7 @@ namespace FX.Configuration.WebAppSample.Controllers
     public class ConfigurationController : ApiController
     {
         private readonly CommonConfiguration commonConfiguration = new CommonConfiguration();
+        private readonly CommonJsonConfiguration commonJsonConfiguration = new CommonJsonConfiguration();
 
         /// <summary>
         /// Gets the configuration value
@@ -52,6 +53,35 @@ namespace FX.Configuration.WebAppSample.Controllers
                 result = new ResponseMessageResult(new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new StringContent(foundProperty.GetValue(this.commonConfiguration).ToString())
+                });
+            }
+            else
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(string.Format("Property not found. Property name: {0}", propertyName))
+                });
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the configuration value from a json config
+        /// </summary>
+        /// <param name="propertyName">Name of the property</param>
+        /// <returns>The result</returns>
+        [HttpGet]
+        [Route("api/jsonconfiguration/{propertyName}")]
+        public IHttpActionResult GetJsonConfiguration(string propertyName)
+        {
+            IHttpActionResult result;
+            PropertyInfo foundProperty = typeof(CommonJsonConfiguration).GetProperties().FirstOrDefault(info => string.Equals(info.Name, propertyName, StringComparison.OrdinalIgnoreCase));
+            if (foundProperty != null)
+            {
+                result = new ResponseMessageResult(new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(foundProperty.GetValue(this.commonJsonConfiguration).ToString())
                 });
             }
             else

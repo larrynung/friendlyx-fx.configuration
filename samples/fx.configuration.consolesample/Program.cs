@@ -20,6 +20,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using Autofac;
 using Newtonsoft.Json;
 
@@ -31,6 +32,34 @@ namespace FX.Configuration.ConsoleSample
     public class Program
     {
         static void Main(string[] args)
+        {
+            //MainJsonConfiguration configuration = new MainJsonConfiguration
+            //{
+            //    AppVersion = "0.3.0",
+            //    ComplexDetails = new ConfigurationComplexDetails
+            //    {
+            //        DisplayName = "some-json-with-display-name",
+            //        Expiration = new DateTime(2099, 11, 1),
+            //        SomeDetails = new SomeSubDetails
+            //        {
+            //            Id = new Guid("569EFA2E-C315-426F-BC02-F76AB4E0EEDA"),
+            //            Name = "this-sub-name-in-json",
+            //            Elapsed = new TimeSpan(1, 10, 4, 19),
+            //        }
+            //    },
+            //    IntegerValues = new List<int> { 190, 267, 33, -1 },
+            //    PreprocessedSetting = "some-setting-which-will-be-wrapped",
+            //};
+
+            //string json = JsonConvert.SerializeObject(configuration);
+
+            RunForAppConfig();
+            RunForJsonConfig();
+
+            Console.ReadKey();
+        }
+
+        private static void RunForAppConfig()
         {
             // Manual configuration creation sample
             Console.WriteLine(Environment.NewLine + "**************** Manual sample");
@@ -69,8 +98,28 @@ namespace FX.Configuration.ConsoleSample
             Console.WriteLine(Environment.NewLine + "**************** Lazy initialization");
             Lazy<MainAppConfiguration> lazyConfiguration = new Lazy<MainAppConfiguration>();
             DumpConfiguration(lazyConfiguration.Value);
+        }
 
-            Console.ReadKey();
+        private static void RunForJsonConfig()
+        {
+            Console.WriteLine(Environment.NewLine + "**************** Json configuration");
+            MainJsonConfiguration jsonConfiguration = new MainJsonConfiguration();
+            DumpConfiguration(jsonConfiguration);
+        }
+
+        private static void DumpConfiguration(MainJsonConfiguration configuration)
+        {
+            Console.WriteLine("AppVersion: " + configuration.AppVersion);
+            Console.WriteLine("ComplexDetails.DisplayName: " + configuration.ComplexDetails.DisplayName);
+            Console.WriteLine("ComplexDetails.Expiration: " + configuration.ComplexDetails.Expiration);
+            Console.WriteLine("ComplexDetails.SomeDetails.Id: " + configuration.ComplexDetails.SomeDetails.Id);
+            Console.WriteLine("ComplexDetails.SomeDetails.Name: " + configuration.ComplexDetails.SomeDetails.Name);
+            Console.WriteLine("ComplexDetails.SomeDetails.Elapsed: " + configuration.ComplexDetails.SomeDetails.Elapsed);
+
+            string json = JsonConvert.SerializeObject(configuration.ComplexDetails);
+            Console.WriteLine("ComplexDetails JSON: " + json);
+
+            Console.WriteLine("Enumerable STRING setting: " + string.Join(";", configuration.IntegerValues));
         }
 
         private static void DumpConfiguration(MainAppConfigurationLongPropertyName configuration)

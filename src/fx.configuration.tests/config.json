@@ -1,0 +1,12 @@
+﻿{
+	"StringProperty" : "some-string-property-value",
+	"BoolProperty" : "true",
+	"TimeSpanProperty" : "11:21:19.2789",
+	"GuidProperty" : "C002F77E-55F6-491E-AF64-C70EC85FEE09",
+    "ComplexProperty": {
+        "Id": "845BE577-33D3-4FF7-B114-75C337C4B449",
+        "Name": "this-my-name",
+        "Amount": 102.389
+    },
+    "IntegerValues" : [190, 267, 33, -1]
+}

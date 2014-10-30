@@ -19,35 +19,28 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-using System;
-using System.Globalization;
-using System.Reflection;
-using FX.Configuration.Deserializers;
+using System.Web;
 
-namespace FX.Configuration.Tests
+namespace FX.Configuration.WebAppSample
 {
     /// <summary>
-    /// A custom configuration provider
+    /// A json configuration sample
     /// </summary>
-    internal class CustomCultureDeserializer : ISettingDeserializer<decimal>
+    public class CommonJsonConfiguration : JsonConfiguration
     {
-        /// <summary>
-        /// Deserializes the specified input value to a typed value
-        /// </summary>
-        /// <param name="input">The input value</param>
-        /// <param name="property">The property</param>
-        /// <param name="cultureInfo">The culture information</param>
-        /// <param name="result">The result value</param>
-        public void Deserialize(object input, PropertyInfo property, CultureInfo cultureInfo, out decimal result)
+        public CommonJsonConfiguration()
+            : base(HttpContext.Current.Server.MapPath("~/config.json"))
         {
-            if (property.Name == "DecimalPropertyInCustomCulture")
-            {
-                result = Convert.ToDecimal(input, new CultureInfo("ru-RU"));
-            }
-            else
-            {
-                result = 0;
-            }
         }
+
+        /// <summary>
+        /// Gets the name of the certificate
+        /// </summary>
+        public string CertificateName { get; private set; }
+
+        /// <summary>
+        /// Gets the certificates count
+        /// </summary>
+        public int CertificatesCount { get; private set; }
     }
 }

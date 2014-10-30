@@ -68,21 +68,28 @@
     <Compile Include="ComplexSettingValue.cs" />
     <Compile Include="ConfigConstants.cs" />
     <Compile Include="CurrentEnvironmentFacts.cs" />
-    <Compile Include="CustomCultureDeserializer.cs" />
     <Compile Include="CustomCultureDecimalDeserializer.cs" />
     <Compile Include="CustomSettingNameResolver.cs" />
     <Compile Include="EnumerableSettingAttributeFacts.cs" />
     <Compile Include="Environment\TestAppConfigurationProviderWithEnvironment.cs" />
+    <Compile Include="JsonConfigurationFacts.cs" />
     <Compile Include="PreprocessAttributeFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAppConfiguration.cs" />
     <Compile Include="TestAppConfigurationEnumerableSetting.cs" />
     <Compile Include="TestAppConfigurationLongPropertyName.cs" />
     <Compile Include="TestAppConfigurationWithPreprocess.cs" />
+    <Compile Include="TestJsonConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="customConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
