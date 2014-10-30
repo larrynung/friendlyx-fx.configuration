@@ -40,6 +40,7 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
     }
 
 ## config.json
+```json
 {
     "AppVersion" : "0.3.0",
     "ComplexDetails" : {
@@ -54,6 +55,7 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
     "IntegerValues" : [190, 267, 33, -1],
     "PreprocessedSetting" : "some-setting-which-will-be-wrapped"
 }
+```
 
 ## MainJsonConfiguration.cs
     /// <summary>
