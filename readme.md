@@ -71,13 +71,11 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
         /// <summary>
         /// Gets the complex details
         /// </summary>
-        [JsonSetting]
         public ConfigurationComplexDetails ComplexDetails { get; set; }
 
         /// <summary>
         /// Gets the integer values
         /// </summary>
-        [JsonSetting]
         public List<int> IntegerValues { get; set; }
 
         /// <summary>
@@ -85,4 +83,21 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
         /// </summary>
         [MyCustomSettingPreprocessor]
         public string PreprocessedSetting { get; set; }
+    }
+	
+## MyCustomSettingPreprocessorAttribute
+    /// <summary>
+    /// A custom preprocessor to process a setting value before it is set to the property
+    /// </summary>
+    public class MyCustomSettingPreprocessorAttribute : PreprocessAttribute
+    {
+        /// <summary>
+        /// Preprocesses the specified setting value
+        /// </summary>
+        /// <param name="settingValue">The original setting value</param>
+        /// <returns> A preprocessed value</returns>
+        public override object Preprocess(object settingValue)
+        {
+            return string.Format("PREPROCESSED VALUE ***** {0}", settingValue);
+        }
     }

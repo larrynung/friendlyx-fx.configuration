@@ -34,7 +34,7 @@ namespace FX.Configuration
         /// Initializes a new instance of the <see cref="AppConfiguration" /> class.
         /// </summary>
         protected AppConfiguration()
-            : this(new object[] { new DefaultDeserializer() })
+            : this(new object[] { new DefaultDeserializer(), new JsonDeserializer() })
         {
         }
 
@@ -43,7 +43,7 @@ namespace FX.Configuration
         /// </summary>
         /// <param name="configurationProviders">The configuration providers</param>
         protected AppConfiguration(IEnumerable<IConfigurationProvider> configurationProviders)
-            : this(configurationProviders, new object[] { new DefaultDeserializer() })
+            : this(configurationProviders, new object[] { new DefaultDeserializer(), new JsonDeserializer() })
         {
         }
 

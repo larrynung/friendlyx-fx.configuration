@@ -37,7 +37,6 @@ namespace FX.Configuration.ConsoleSample
         /// <summary>
         /// Gets the complex details
         /// </summary>
-        [JsonSetting]
         public ConfigurationComplexDetails ComplexDetails { get; private set; }
 
         /// <summary>

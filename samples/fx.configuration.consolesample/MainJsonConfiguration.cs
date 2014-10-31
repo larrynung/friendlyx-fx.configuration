@@ -20,7 +20,6 @@
 */
 
 using System.Collections.Generic;
-using FX.Configuration.Attributes;
 
 namespace FX.Configuration.ConsoleSample
 {
@@ -37,13 +36,11 @@ namespace FX.Configuration.ConsoleSample
         /// <summary>
         /// Gets the complex details
         /// </summary>
-        [JsonSetting]
         public ConfigurationComplexDetails ComplexDetails { get; set; }
 
         /// <summary>
         /// Gets the integer values
         /// </summary>
-        [JsonSetting]
         public List<int> IntegerValues { get; set; }
 
         /// <summary>

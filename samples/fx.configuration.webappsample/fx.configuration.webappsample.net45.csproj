@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="fx.configuration, Version=0.3.0.0, Culture=neutral, PublicKeyToken=d6b5ff1ed8812a28, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\FX.Configuration.0.3.1\lib\net45\fx.configuration.dll</HintPath>
+      <HintPath>packages\FX.Configuration.0.3.3\lib\net45\fx.configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />

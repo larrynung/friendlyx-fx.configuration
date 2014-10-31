@@ -35,7 +35,7 @@ namespace FX.Configuration.ConsoleSample
         /// <returns> A preprocessed value</returns>
         public override object Preprocess(object settingValue)
         {
-            return string.Format("PREPROCESSED VALUE ***** {0}",settingValue);
+            return string.Format("PREPROCESSED VALUE ***** {0}", settingValue);
         }
     }
 }

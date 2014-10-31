@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using FX.Configuration.Attributes;
 
 namespace FX.Configuration.Tests
 {
@@ -69,13 +68,11 @@ namespace FX.Configuration.Tests
         /// <summary>
         /// Gets the complex property
         /// </summary>
-        [JsonSetting]
         public ComplexProperty ComplexProperty { get; private set; }
 
         /// <summary>
         /// Gets the integer values
         /// </summary>
-        [JsonSetting]
         public List<int> IntegerValues { get; set; }
     }
 

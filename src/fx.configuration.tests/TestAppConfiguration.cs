@@ -112,7 +112,6 @@ namespace FX.Configuration.Tests
         /// <summary>
         /// Gets another complex property
         /// </summary>
-        [JsonSetting]
         public ComplexSettingValue AnotherComplexProperty { get; private set; }
     }
 }

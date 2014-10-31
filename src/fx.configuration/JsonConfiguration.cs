@@ -19,6 +19,9 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using System;
+using FX.Configuration.Deserializers;
+
 namespace FX.Configuration
 {
     /// <summary>
@@ -30,7 +33,7 @@ namespace FX.Configuration
         /// Initializes a new instance of the <see cref="JsonConfiguration"/> class.
         /// </summary>
         public JsonConfiguration()
-            : base(new IConfigurationProvider[] { new JsonConfigurationProvider() })
+            : base(new IConfigurationProvider[] { new JsonConfigurationProvider() }, new object[] { new DefaultDeserializer(), new JsonDeserializer() })
         {
             base.Fill();
         }
@@ -40,7 +43,7 @@ namespace FX.Configuration
         /// </summary>
         /// <param name="jsonConfigFileName">The json configuration file name</param>
         public JsonConfiguration(string jsonConfigFileName)
-            : base(new IConfigurationProvider[] { new JsonConfigurationProvider(jsonConfigFileName) })
+            : base(new IConfigurationProvider[] { new JsonConfigurationProvider(jsonConfigFileName) }, new object[] { new DefaultDeserializer(), new JsonDeserializer() })
         {
             base.Fill();
         }

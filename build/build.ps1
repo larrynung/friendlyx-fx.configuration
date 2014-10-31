@@ -1,7 +1,7 @@
 properties {
     $signKeyPath = "../../keys/fx.key.pfx"
     $majorVersion = "0.3"
-    $majorWithReleaseVersion = "0.3.1"
+    $majorWithReleaseVersion = "0.3.3"
     $version = GetVersion $majorWithReleaseVersion
     $baseDir  = resolve-path ..
     $sourceDir = "$baseDir\src"
