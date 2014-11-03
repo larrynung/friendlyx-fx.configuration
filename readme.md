@@ -1,5 +1,6 @@
 A lightweight, simple, flexible, extensible library to read configurations using strongly typed classes.
-You can use a standard way to read configuration from app.config as well as from a pure JSON configuration file.
+- you can use a standard way to read configuration from app.config as well as from a pure JSON configuration file.
+- you can also use a mix of various configuration sources like app.config and config.json (look at the MixedConfiguration class)
 
 Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuration.WebAppSample.
 
@@ -100,4 +101,61 @@ Usage samples can be found in FX.Configuration.ConsoleSample and FX.Configuratio
         {
             return string.Format("PREPROCESSED VALUE ***** {0}", settingValue);
         }
+    }
+
+## MainMixedConfiguration.cs
+    /// <summary>
+    /// Main mixed configuration to read values from app.config and config.json
+    /// </summary>
+    public class MainMixedConfiguration : MixedConfiguration
+    {
+        /// <summary>
+        /// Gets a string setting value setting from app.config
+        /// </summary>
+        public string MixedAppString { get; private set; }
+
+        /// <summary>
+        /// Gets a boolean setting value setting from app.config
+        /// </summary>
+        public bool MixedAppBoolean { get; private set; }
+
+        /// <summary>
+        /// Gets a decimal setting value setting from app.config
+        /// </summary>
+        public decimal MixedAppDecimal { get; private set; }
+
+        /// <summary>
+        /// Gets a guid setting value setting from app.config
+        /// </summary>
+        public Guid MixedAppGuid { get; private set; }
+
+        /// <summary>
+        /// Gets a complex setting value setting from app.config
+        /// </summary>
+        public ComplexMixedProperty MixedAppComplex { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a string setting value from config.json
+        /// </summary>
+        public string MixedJsonString { get; set; }
+
+        /// <summary>
+        /// Gets or sets a boolean setting value from config.json
+        /// </summary>
+        public bool MixedJsonBoolean { get; set; }
+
+        /// <summary>
+        /// Gets or sets a decimal setting value from config.json
+        /// </summary>
+        public decimal MixedJsonDecimal { get; set; }
+
+        /// <summary>
+        /// Gets or sets a guid setting value from config.json
+        /// </summary>
+        public Guid MixedJsonGuid { get; set; }
+
+        /// <summary>
+        /// Gets or sets a complex setting value from config.json
+        /// </summary>
+        public ComplexMixedProperty MixedJsonComplex { get; set; }
     }

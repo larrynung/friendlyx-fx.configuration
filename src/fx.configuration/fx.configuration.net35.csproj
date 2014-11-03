@@ -71,6 +71,7 @@
     <Compile Include="IConfigurationProvider.cs" />
     <Compile Include="JsonConfiguration.cs" />
     <Compile Include="JsonConfigurationProvider.cs" />
+    <Compile Include="MixedConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resolvers\ISettingNameResolver.cs" />
     <Compile Include="Resolvers\LongPropertyNameSettingNameResolver.cs" />

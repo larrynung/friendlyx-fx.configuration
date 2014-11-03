@@ -59,7 +59,7 @@ namespace FX.Configuration
 
         private string ReadJsonFromConfigFile()
         {
-            return File.ReadAllText(this.JsonConfigFileName);
+            return File.ReadAllText(this.JsonConfigFilePath);
         }
 
         /// <summary>
@@ -74,16 +74,16 @@ namespace FX.Configuration
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonConfigurationProvider"/> class.
         /// </summary>
-        /// <param name="jsonConfigFileName">Name of the json configuration file.</param>
-        public JsonConfigurationProvider(string jsonConfigFileName)
+        /// <param name="jsonConfigFilePath">The json configuration file path</param>
+        public JsonConfigurationProvider(string jsonConfigFilePath)
         {
-            this.JsonConfigFileName = jsonConfigFileName;
+            this.JsonConfigFilePath = jsonConfigFilePath;
         }
 
         /// <summary>
         /// Gets the name of the json configuration file
         /// </summary>
-        public string JsonConfigFileName { get; private set; }
+        public string JsonConfigFilePath { get; private set; }
 
         /// <summary>
         /// Tries the get a value

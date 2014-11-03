@@ -33,29 +33,12 @@ namespace FX.Configuration.ConsoleSample
     {
         static void Main(string[] args)
         {
-            //MainJsonConfiguration configuration = new MainJsonConfiguration
-            //{
-            //    AppVersion = "0.3.0",
-            //    ComplexDetails = new ConfigurationComplexDetails
-            //    {
-            //        DisplayName = "some-json-with-display-name",
-            //        Expiration = new DateTime(2099, 11, 1),
-            //        SomeDetails = new SomeSubDetails
-            //        {
-            //            Id = new Guid("569EFA2E-C315-426F-BC02-F76AB4E0EEDA"),
-            //            Name = "this-sub-name-in-json",
-            //            Elapsed = new TimeSpan(1, 10, 4, 19),
-            //        }
-            //    },
-            //    IntegerValues = new List<int> { 190, 267, 33, -1 },
-            //    PreprocessedSetting = "some-setting-which-will-be-wrapped",
-            //};
-
-            //string json = JsonConvert.SerializeObject(configuration);
-
             RunForAppConfig();
             RunForJsonConfig();
+            RunForMixedConfig();
 
+            Console.WriteLine();
+            Console.WriteLine("!!! Done");
             Console.ReadKey();
         }
 
@@ -105,6 +88,36 @@ namespace FX.Configuration.ConsoleSample
             Console.WriteLine(Environment.NewLine + "**************** Json configuration");
             MainJsonConfiguration jsonConfiguration = new MainJsonConfiguration();
             DumpConfiguration(jsonConfiguration);
+        }
+
+        private static void RunForMixedConfig()
+        {
+            Console.WriteLine(Environment.NewLine + "**************** Mixed configuration");
+            MainMixedConfiguration mixedConfiguration = new MainMixedConfiguration();
+            DumpConfiguration(mixedConfiguration);
+        }
+
+        private static void DumpConfiguration(MainMixedConfiguration configuration)
+        {
+            Console.WriteLine();
+            Console.WriteLine("#### settings from app.config ####");
+            Console.WriteLine("AppString: " + configuration.MixedAppString);
+            Console.WriteLine("AppBool: " + configuration.MixedAppBoolean);
+            Console.WriteLine("AppDecimal: " + configuration.MixedAppDecimal);
+            Console.WriteLine("AppGuid: " + configuration.MixedAppGuid);
+            Console.WriteLine("AppComplex.Id: " + configuration.MixedAppComplex.Id);
+            Console.WriteLine("AppComplex.Name: " + configuration.MixedAppComplex.Name);
+            Console.WriteLine("AppComplex.Amount: " + configuration.MixedAppComplex.Amount);
+
+            Console.WriteLine();
+            Console.WriteLine("#### settings from config.json ####");
+            Console.WriteLine("JsonString: " + configuration.MixedJsonString);
+            Console.WriteLine("JsonBool: " + configuration.MixedJsonBoolean);
+            Console.WriteLine("JsonDecimal: " + configuration.MixedJsonDecimal);
+            Console.WriteLine("JsonGuid: " + configuration.MixedJsonGuid);
+            Console.WriteLine("JsonComplex.Id: " + configuration.MixedJsonComplex.Id);
+            Console.WriteLine("JsonComplex.Name: " + configuration.MixedJsonComplex.Name);
+            Console.WriteLine("JsonComplex.Amount: " + configuration.MixedJsonComplex.Amount);
         }
 
         private static void DumpConfiguration(MainJsonConfiguration configuration)

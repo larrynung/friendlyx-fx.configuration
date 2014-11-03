@@ -73,6 +73,7 @@
     <Compile Include="EnumerableSettingAttributeFacts.cs" />
     <Compile Include="Environment\TestAppConfigurationProviderWithEnvironment.cs" />
     <Compile Include="JsonConfigurationFacts.cs" />
+    <Compile Include="MixedConfigurationFacts.cs" />
     <Compile Include="PreprocessAttributeFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAppConfiguration.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="TestAppConfigurationLongPropertyName.cs" />
     <Compile Include="TestAppConfigurationWithPreprocess.cs" />
     <Compile Include="TestJsonConfiguration.cs" />
+    <Compile Include="TestMixedConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

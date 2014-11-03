@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="fx.configuration, Version=0.3.0.0, Culture=neutral, PublicKeyToken=d6b5ff1ed8812a28, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\FX.Configuration.0.3.3\lib\net45\fx.configuration.dll</HintPath>
+      <HintPath>packages\FX.Configuration.0.3.5\lib\net45\fx.configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
@@ -81,6 +81,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CommonConfiguration.cs" />
     <Compile Include="CommonJsonConfiguration.cs" />
+    <Compile Include="CommonMixedConfiguration.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -88,7 +89,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="config.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

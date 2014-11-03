@@ -1,4 +1,5 @@
 ﻿{
 	"CertificateName" : "[From JsonConfig] Common certificate",
-	"CertificatesCount" : 26781
+    "CertificatesCount": 26781,
+    "CertificateNameFromJsonConfig":  "[From JsonConfig] A certificate name"
 }

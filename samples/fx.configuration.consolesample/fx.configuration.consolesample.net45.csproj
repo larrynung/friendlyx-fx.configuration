@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="fx.configuration, Version=0.3.0.0, Culture=neutral, PublicKeyToken=d6b5ff1ed8812a28, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\FX.Configuration.0.3.3\lib\net45\fx.configuration.dll</HintPath>
+      <HintPath>packages\FX.Configuration.0.3.5\lib\net45\fx.configuration.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,6 +59,7 @@
     <Compile Include="MainAppConfiguration.cs" />
     <Compile Include="MainAppConfigurationLongPropertyName.cs" />
     <Compile Include="MainJsonConfiguration.cs" />
+    <Compile Include="MainMixedConfiguration.cs" />
     <Compile Include="MyCustomSettingPreprocessorAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
