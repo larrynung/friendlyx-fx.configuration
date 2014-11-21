@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fx.configuration", "fx.configuration\fx.configuration.net45.csproj", "{BEC9CF24-9381-46B5-B141-89EA3CB1C1A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fx.configuration.net45", "fx.configuration\net45\fx.configuration.net45.csproj", "{BEC9CF24-9381-46B5-B141-89EA3CB1C1A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fx.configuration.tests", "fx.configuration.tests\fx.configuration.tests.net45.csproj", "{F5E7C997-4C41-4DC7-A9B6-6D43DDD204B4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fx.configuration.azure", "fx.configuration.azure\fx.configuration.azure.net45.csproj", "{C3E88978-0A7E-4AD9-A36E-B2482D8A8A20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fx.configuration.tests.net45", "fx.configuration.tests\net45\fx.configuration.tests.net45.csproj", "{F5E7C997-4C41-4DC7-A9B6-6D43DDD204B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{F5E7C997-4C41-4DC7-A9B6-6D43DDD204B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5E7C997-4C41-4DC7-A9B6-6D43DDD204B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5E7C997-4C41-4DC7-A9B6-6D43DDD204B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3E88978-0A7E-4AD9-A36E-B2482D8A8A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3E88978-0A7E-4AD9-A36E-B2482D8A8A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3E88978-0A7E-4AD9-A36E-B2482D8A8A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3E88978-0A7E-4AD9-A36E-B2482D8A8A20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 properties {
-    $signKeyPath = "../../keys/fx.key.pfx"
-    $majorVersion = "0.3"
-    $majorWithReleaseVersion = "0.3.5"
+    $signKeyPath = "../../../keys/fx.key.pfx"
+    $majorVersion = "0.4"
+    $majorWithReleaseVersion = "0.4.0"
     $version = GetVersion $majorWithReleaseVersion
     $baseDir  = resolve-path ..
     $sourceDir = "$baseDir\src"
@@ -19,7 +19,7 @@ task CleanOldBuild {
 
     foreach ($build in $builds)
     {
-        $projectDir = $build.SrcFolder
+        $projectDir = $build.SrcFolder + "/" + $build.TargetFramework
         DeleteFolder "$sourceDir/$projectDir/obj"
         DeleteFolder "$sourceDir/$projectDir/bin"
 
@@ -39,7 +39,7 @@ task Build -depends CleanOldBuild {
         $name = $build.Name
         $targetFramework = $build.TargetFramework
         $finalDir = GetFinalDir $build
-        $projectFileName = "../src/$srcDir/$name.$targetFramework.csproj"
+        $projectFileName = "../src/$srcDir/$targetFramework/$name.$targetFramework.csproj"
         Write-Host -ForegroundColor Green "Building " $name
         Write-Host -ForegroundColor Green "FinalDir " $finalDir
         exec { msbuild $projectFileName "/t:Clean;Rebuild" /p:Configuration=Release "/p:Platform=Any CPU" "/p:OutputPath=$finalDir" "/p:DocumentationFile=$finalDir\$name.xml" /p:AssemblyOriginatorKeyFile=$signKeyPath "/p:SignAssembly=true" "/p:DefineConstants=`"CODE_ANALYSIS;TRACE;`"" "/p:DebugSymbols=true" "/p:VisualStudioVersion=12.0" | Out-Default } "Error building $name"
